@@ -14,6 +14,7 @@ function App() {
         <meta name="description" content={t('app.description')} />
       </Helmet>
 
+      <h1>Welcome to Carvago Front-End Assignment</h1>
       {/**
        * continue
        */}
