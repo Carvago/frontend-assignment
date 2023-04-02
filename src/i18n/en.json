@@ -1,4 +1,5 @@
 {
   "app.title": "Carvago Frontend Assignment",
-  "app.description": "Assignment in React.js for developers who want to join our team."
+  "app.description": "Assignment in React.js for developers who want to join our team.",
+  "welcome.message": "Welcome to Carvago Front-End Assignment"
 }
