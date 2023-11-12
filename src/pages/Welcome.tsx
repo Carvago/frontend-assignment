@@ -1,8 +1,9 @@
 import {Card, Center, Text} from '@chakra-ui/react';
 import {useTranslation} from 'react-i18next';
 
-function Welcome() {
+export function Welcome() {
   const {t} = useTranslation();
+
   return (
     <Center bg="whiteAlpha.800" height="100vh" width="100wv" padding="10">
       <Card colorScheme="whatsapp" variant="outline" padding="10">
@@ -13,5 +14,3 @@ function Welcome() {
     </Center>
   );
 }
-
-export default Welcome;
