@@ -41,7 +41,7 @@ You might think a to do list isn't a challenge. <br>
 That's right, that is why we're gonna make it littlebit harder.
 <br>
 
-You can use `Chakra UI` design system with our style theme. Which means that you will create the entire task based on the [Figma specification](https://www.figma.com/file/JoD25P1n4ALPTdt1wesM1S/Platforma-onboarding). You will also use the `Redux toolkit` and demonstrate its practical use.
+You can use `Chakra UI` design system with our style theme. Which means that you will create the entire task based on the [Figma specification](https://www.figma.com/file/JoD25P1n4ALPTdt1wesM1S/Frontend-Assignment?node-id=2170%3A30021&mode=dev). You will also use the `Redux toolkit` and demonstrate its practical use.
 
 The assignment will not be completely detailed, i.e. you will have to think about the details. How you handle it is up to you and we will grade you accordingly. You will be given a rough description, and figma specification.
 
@@ -54,7 +54,7 @@ The assignment will not be completely detailed, i.e. you will have to think abou
 
 ## Important links
 
-- [Figma specification](https://www.figma.com/file/JoD25P1n4ALPTdt1wesM1S/Platforma-onboarding)
+- [Figma specification](https://www.figma.com/file/JoD25P1n4ALPTdt1wesM1S/Frontend-Assignment?node-id=2170%3A30021&mode=dev)
 - [Chakra UI](https://chakra-ui.com/)
 - [Redux Toolkit](https://redux-toolkit.js.org/)
 - [Jest](https://jestjs.io/)
