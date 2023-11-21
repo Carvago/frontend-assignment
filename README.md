@@ -1,16 +1,11 @@
 # Quick Overview
 
-> This repository is built on [Create React App](https://github.com/facebook/create-react-app) with TypeScript configuration
+- This repository is built on [Create React App](https://github.com/facebook/create-react-app) with TypeScript configuration
+- [Chakra UI](https://chakra-ui.com/) is installed as UI framework
+- For unit testing, [Jest](https://jestjs.io/) is already installed
+- You will use our prettier, eslint, and typescript config for static testing <br/> `npm run eslint && npm run prettify && npm run typecheck`
 
-> [Chakra UI](https://chakra-ui.com/) is installed as UI framework
-
-> For unit testing, [Jest](https://jestjs.io/) is ready for you and for end-to-end testing it is [Cypress](https://www.cypress.io/)
-
-> In the repository you will find a ready-made base for [Redux Toolkit](https://redux-toolkit.js.org/)
-
-> You will use our prettier, eslint and typescript config for static testing - `npm run eslint && npm run prettify && npm run typecheck`
-
-For quick start follow these commands
+For a quick start follow these commands
 
 ```sh
 npm install
@@ -19,56 +14,50 @@ npm start
 
 Then open [http://localhost:3000](http://localhost:3000/) to see your app.<br>
 
-## Why the assignment?
+---
 
-The assignment is one of three steps when we profile the applicant.<br>In this step we evaluate:
+![Alt text](./src/asserts/readme/banner.png)
 
-- `project architecture`
-- `sense of clarity and ability to write readable code`
-- `knowledge of best practicess`
-- `visual design of the application`
-- `programming skills`
+**Your task will be to write a `To-Do app`.** <br/>
+You might think a to-do list isn't a challenge, and
+that's right, that is why we're gonna make it a little bit harder.
 
-## Why do I have to write code if I already sent you my code?
-
-Simply your code was not sufficient. Since we want to give you a chance and want to see more from you, we ask you to write our assignment.<br>
-We understand your time constraint, so our assignment should not take you much time.
-
-# The assignment
-
-Your task will be to write a `To Do List`.<br>
-You might think a to do list isn't a challenge. <br>
-That's right, that is why we're gonna make it littlebit harder.
-<br>
-
-You can use `Chakra UI` design system with our style theme. Which means that you will create the entire task based on the [Figma specification](<https://www.figma.com/file/dUbAoACARZfJ6TuXvsR4Xk/Frontend-Assignment-(1.0)?type=design&node-id=0-1&mode=design>). You will also use the `Redux toolkit` and demonstrate its practical use.
+You can use the `Chakra UI` design system with our style theme. This means that you will create the entire task based on the [Figma specification](https://www.figma.com/file/JoD25P1n4ALPTdt1wesM1S/Zentask---Frontend-Assignment?type=design&t=qZXHzbWa37NSYGcn-6).
 
 The assignment will not be completely detailed, i.e. you will have to think about the details. How you handle it is up to you and we will grade you accordingly. You will be given a rough description, and figma specification.
 
-1. First, you will create a header where you fill in your first and last name.<br><br>
-2. Then you create a container where it will render a row, which will contain an add section button, which will `Add a section`. The row will wrap under itself as the screen shrinks. On a mobile device, each section will be below itself.<br><br>
-3. Each section will contain a `section title` and a `settings button`. The settings will allow you to `mark all as done`, `edit`, or `delete list`. Each section will have a filter where you will be able to show `All`, `To do` or `Done` tasks. Each section will contain an `input component` with placeholder - "Add new task", where you will be able to enter the `task description` and then on onEnter save them.<br><br>
-4. Each task will contain a title and a `more button`. The left border will be colored according to the `priority` of the task and the tasks will be ordered from highest to lowest priority. Clicking on the `more button` will open a popup where you can `Edit` the task or `Delete` the task.<br><br>
-5. Under the header on the left side will be the `current date` (today) and on the right side will be the `filter` and `settings` button. In the filter button, the user will be able to `show all tasks`, `View completed tasks` or `View to-do items`. In the `settings` button the user will be able to `Clear all` or `Clear all done tasks`.<br><br>
-6. In the task settings there is an option to `edit task`. When clicked, a modal window opens where the user can change the `task name` or `task description`. He can also specify the `priority` of the task.
+| Requirements                                                                 | What we appreciate                                                                                  | Where we relieve                                                                                                       |
+| ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| Chakra UI                                                                    | Statefull fetching                                                                                  | Don't have time to waste with fancy design. Write a simple proof of concept and focus on the logical part of your code |
+| Error handling                                                               | Feel free to host the app on [vercel](https://vercel.com/) or [gh-pages](https://pages.github.com/) |                                                                                                                        |
+| Responsive design (let's focus on main devices, Desktop, Tablet, and Mobile) | Basic component system (Button, Checkbox, etc.)                                                     |                                                                                                                        |
+| Write utility function to get formatted current date and test with jest      | Task feedback from your side, feel free to add comments with questions/explanations/notes           |                                                                                                                        |
+
+### Descriptions
+
+You will create a simple to-do app, with a user login. You will use [DummyJSON](https://dummyjson.com/docs) API to provide dummy API endpoints.
+
+**Don't feel misguided, that the app won't be responsive to the API calls. DummyJson won't update data in BE database, it will just mock the correct response. You can switch between users to see different states of to-dos**
+
+1. First, you will create a login page with the `username` and `password` fields.
+   - you will authenticate the user as defined in the [dummyJSON API docs](https://dummyjson.com/docs/auth) and get the user `authorization token` as well as `id`
+   - example credentials
+   ```json
+   {
+     "username": "atuny0",
+     "password": "9uQFF1Lh"
+   }
+   ```
+2. Then you create a simple todo list with all todos assigned to [logged-id user](https://dummyjson.com/docs/users) with an authorization token
+3. Each todo has quick actions button, that will reveal delete and complete actions
+4. On todo click, you will be redirected to the todo detail page
+5. On the todo detail page, you see todo in full length and have options to edit the todo as well as delete and mark it as completed
 
 ## Important links
 
-- [Figma specification](<https://www.figma.com/file/dUbAoACARZfJ6TuXvsR4Xk/Frontend-Assignment-(1.0)?type=design&node-id=0-1&mode=design>)
+- [DummyJSON](https://dummyjson.com/docs)
+- [Figma specification](https://www.figma.com/file/JoD25P1n4ALPTdt1wesM1S/Zentask---Frontend-Assignment?type=design&t=qZXHzbWa37NSYGcn-6)
 - [Chakra UI](https://chakra-ui.com/)
-- [Redux Toolkit](https://redux-toolkit.js.org/)
 - [Jest](https://jestjs.io/)
-- [Cypress](https://www.cypress.io/)
 
-### What we appreciate
-
-- Do you know `Cypress` or `Jest`? Show yourself!
-- `Chakra UI` is too easy for you, never mind... style your own using `Styled Components` or use `Tailwindcss`
-- We do not require a strictly responsive UI. But you can make it
-- We will be very happy if you use some library for animations
-
-### Where we relieve
-
-- You don't know the Redux Toolkit. Never mind, don't waste your time and use what you know.
-
-That's it! Good luck!
+**That's it! Good luck!**
