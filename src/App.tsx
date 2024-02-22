@@ -15,7 +15,7 @@ function App() {
         <meta name="description" content={t('app.description')} />
       </Helmet>
 
-      {/**
+      {/*
        * start from here
        */}
       <Welcome />
