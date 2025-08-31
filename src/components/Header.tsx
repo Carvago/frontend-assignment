@@ -1,10 +1,11 @@
 import {Box} from '@chakra-ui/react';
 import {AppLogo} from './icons';
-import {useAuth} from '../hooks/useAuth';
 import {Avatar} from './Avatar';
+import { useIsLoggedIn } from '../store/useIsLoggedIn';
 
 export function Header() {
-  const {isAuthenticated} = useAuth();
+  const isLoggedIn = useIsLoggedIn();
+
   return (
     <Box
       as="header"
@@ -14,11 +15,11 @@ export function Header() {
       }}
       display="flex"
       alignItems="center"
-      justifyContent={isAuthenticated ? 'space-between' : 'center'}
+      justifyContent={isLoggedIn ? 'space-between' : 'center'}
     >
       <AppLogo height={32} />
 
-      {isAuthenticated && <Avatar name="John Doe" />}
+      {isLoggedIn && <Avatar name="John Doe" />}
     </Box>
   );
 }

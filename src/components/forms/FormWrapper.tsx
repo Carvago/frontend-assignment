@@ -14,6 +14,7 @@ export function FormWrapper({title, description, children}: PropsWithChildren<Pr
         lg: '40px',
       }}
       maxW="xl"
+      minW="576px"
       bg="white"
       borderRadius={24}
       gap={6}

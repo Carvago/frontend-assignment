@@ -1,4 +1,4 @@
-import React, {PropsWithChildren} from 'react';
+import {PropsWithChildren} from 'react';
 import {Box, Center} from '@chakra-ui/react';
 import {Header} from './Header';
 

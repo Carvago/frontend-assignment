@@ -1,42 +1,35 @@
-import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
+import {BrowserRouter, useRoutes} from 'react-router';
 import {LoginPage} from '../pages/LoginPage';
 import {RegisterPage} from '../pages/RegisterPage';
-import {ProtectedRoute} from './ProtectedRoute';
 import {Layout} from './Layout';
 import { TodosPage } from '../pages/TodosPage';
+import { ProtectedRoute } from './ProtectedRoute';
+import { UnProtectedRoute } from './UnProtectedRoute';
 
-const RouterContent = () => (
-  <Routes>
-    <Route path="/login" element={<LoginPage />} />
-    <Route path="/register" element={<RegisterPage />} />
+const routeConfig = [
+  {
+    path: '/login',
+    element: <UnProtectedRoute><LoginPage /></UnProtectedRoute>,
+  },
+  {
+    path: '/register',
+    element: <UnProtectedRoute><RegisterPage /></UnProtectedRoute>,
+  },
+  {
+    path: '/',
+    element: <ProtectedRoute><TodosPage /></ProtectedRoute>,
+  },
+];
 
-    <Route
-      path="/todos"
-      element={
-        <ProtectedRoute>
-          <TodosPage />
-        </ProtectedRoute>
-      }
-    />
-
-    <Route
-      path="/"
-      element={
-        <ProtectedRoute>
-          <Navigate to="/todos" replace />
-        </ProtectedRoute>
-      }
-    />
-
-    {/* Catch all - redirect to root */}
-    <Route path="*" element={<Navigate to="/" replace />} />
-  </Routes>
-);
+const Routes = () => {
+  const element = useRoutes(routeConfig);
+  return element;
+}
 
 export const AppRouter = () => (
   <BrowserRouter>
     <Layout>
-      <RouterContent />
+      <Routes /> 
     </Layout>
   </BrowserRouter>
 );
