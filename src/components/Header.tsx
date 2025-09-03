@@ -1,7 +1,7 @@
 import {Box} from '@chakra-ui/react';
 import {AppLogo} from './icons';
 import {Avatar} from './Avatar';
-import { useIsLoggedIn } from '../store/useIsLoggedIn';
+import {useIsLoggedIn} from '../store/useIsLoggedIn';
 
 export function Header() {
   const isLoggedIn = useIsLoggedIn();

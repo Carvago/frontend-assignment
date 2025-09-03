@@ -281,7 +281,9 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          'application/json': components['schemas']['TodoResponse'][];
+          'application/json': {
+            todos: components['schemas']['TodoResponse'][];
+          };
         };
       };
     };

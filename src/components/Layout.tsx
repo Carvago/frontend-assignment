@@ -5,13 +5,14 @@ import {Header} from './Header';
 export const Layout = ({children}: PropsWithChildren) => (
   <Box
     px={{
-      base: '8px',
+      base: '16px',
       lg: '40px',
       xl: '76px',
     }}
+    pb="100px"
     alignItems="center"
     bg="#F1F2F6"
-    h="100%"
+    minH="100%"
   >
     <Header />
     <Center as="main">{children}</Center>

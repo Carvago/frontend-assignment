@@ -14,6 +14,7 @@ function App() {
         htmlAttributes={{lang: i18n.language}}
       >
         <meta name="description" content={t('app.description')} />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
       </Helmet>
       <StartWrapper>
         <AppRouter />

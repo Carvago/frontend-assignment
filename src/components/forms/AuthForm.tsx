@@ -1,11 +1,11 @@
-import { Box, Button, VStack, Text, Link, Alert, AlertIcon } from '@chakra-ui/react';
-import { FormField } from './FormField';
-import { useTranslation } from 'react-i18next';
-import { useForm } from 'react-hook-form';
-import { UserCredentials } from '../../api/client';
-import { FormWrapper } from './FormWrapper';
-import { Link as RouterLink } from 'react-router';
-import { PasswordField } from './PasswordField';
+import {Box, Button, VStack, Text, Link, Alert, AlertIcon} from '@chakra-ui/react';
+import {FormField} from './FormField';
+import {useTranslation} from 'react-i18next';
+import {useForm} from 'react-hook-form';
+import {UserCredentials} from '../../api/client';
+import {FormWrapper} from './FormWrapper';
+import {Link as RouterLink} from 'react-router';
+import {PasswordField} from './PasswordField';
 
 type Props = {
   title: string;
@@ -14,8 +14,8 @@ type Props = {
   alternativeText: string;
   alternativeLink: string;
   alternativeLinkText: string;
-  onSubmit: (data: UserCredentials) => Promise<void>;
-  error?: string;
+  onSubmit: (data: UserCredentials) => void;
+  error?: string | null;
 };
 
 export function AuthForm({
@@ -28,24 +28,18 @@ export function AuthForm({
   onSubmit,
   error,
 }: Props) {
-  const { t } = useTranslation();
+  const {t} = useTranslation();
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: {errors, isSubmitting},
   } = useForm<UserCredentials>({
     reValidateMode: 'onChange',
   });
 
-  console.log(isSubmitting);
-
-  const handleFormSubmit = async (data: UserCredentials) => {
-    await onSubmit(data);
-  };
-
   return (
     <FormWrapper title={title} description={description}>
-      <Box as="form" onSubmit={handleSubmit(handleFormSubmit)} w="full" noValidate>
+      <Box as="form" onSubmit={handleSubmit(onSubmit)} w="full" noValidate>
         <VStack spacing={4}>
           {error && (
             <Alert status="error" borderRadius="md">
@@ -96,7 +90,7 @@ export function AuthForm({
           to={alternativeLink}
           color="fill-brand"
           fontWeight="text.alternative"
-          _hover={{ color: 'fill-brand-hover' }}
+          _hover={{color: 'fill-brand-hover'}}
         >
           {alternativeLinkText}
         </Link>

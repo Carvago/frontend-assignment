@@ -1,5 +1,6 @@
-import {Heading, VStack, Text} from '@chakra-ui/react';
+import {Heading, Text} from '@chakra-ui/react';
 import {PropsWithChildren} from 'react';
+import {Card} from '../Card';
 
 type Props = {
   title: string;
@@ -8,22 +9,12 @@ type Props = {
 
 export function FormWrapper({title, description, children}: PropsWithChildren<Props>) {
   return (
-    <VStack
-      p={{
-        sm: '16px',
-        lg: '40px',
-      }}
-      maxW="xl"
-      minW="576px"
-      bg="white"
-      borderRadius={24}
-      gap={6}
-    >
+    <Card sx={{maxW: '576px'}}>
       <Heading fontSize="heading.1" alignSelf="flex-start">
         {title}
       </Heading>
       <Text color="text-secondary">{description}</Text>
       {children}
-    </VStack>
+    </Card>
   );
 }

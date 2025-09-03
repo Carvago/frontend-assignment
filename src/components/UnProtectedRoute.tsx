@@ -1,8 +1,8 @@
-import { PropsWithChildren } from "react";
-import { Navigate } from "react-router";
-import { useIsLoggedIn } from "../store/useIsLoggedIn";
+import {PropsWithChildren} from 'react';
+import {Navigate} from 'react-router';
+import {useIsLoggedIn} from '../store/useIsLoggedIn';
 
-export const UnProtectedRoute = ({ children }: PropsWithChildren) => {
+export const UnProtectedRoute = ({children}: PropsWithChildren) => {
   const isLoggedIn = useIsLoggedIn();
 
   if (isLoggedIn) {
