@@ -1,12 +1,3 @@
-{"title":"test","description":"test","id":"5034b8ef-a4e5-4fdc-a0a3-cbdf289280aa","userId":"20391269-a8ed-4bdd-8e43-be6d5bb11fdb","completed":false,"createdAt":"2024-02-21T23:31:08.439Z","_id":"ouxjpBmEkHdhdy0H"}
-{"title":"test","description":"test","id":"1cea6d54-4620-4c9b-93d5-b1bb597eea35","userId":"20391269-a8ed-4bdd-8e43-be6d5bb11fdb","completed":false,"createdAt":"2024-02-21T23:31:10.007Z","_id":"P25k67aZwdTMlOsc"}
-{"title":"test","description":"test","id":"3a62d8b0-65b0-4036-90ac-5c3004fd8f34","userId":"20391269-a8ed-4bdd-8e43-be6d5bb11fdb","completed":false,"createdAt":"2024-02-21T23:31:10.968Z","_id":"LkrZNljoiLxQQHGM"}
-{"title":"test-update2","description":"test","id":"b9ae3462-aa70-4238-9525-e8bb4e11c849","userId":"20391269-a8ed-4bdd-8e43-be6d5bb11fdb","completed":false,"createdAt":"2024-02-21T23:31:26.921Z","_id":"LkrZNljoiLxQQHGM"}
-{"title":"test-update2","description":"test","id":"b9ae3462-aa70-4238-9525-e8bb4e11c849","userId":"20391269-a8ed-4bdd-8e43-be6d5bb11fdb","completed":true,"createdAt":"2024-02-21T23:31:26.921Z","_id":"LkrZNljoiLxQQHGM"}
-{"title":"test-update2","description":"test","id":"b9ae3462-aa70-4238-9525-e8bb4e11c849","userId":"20391269-a8ed-4bdd-8e43-be6d5bb11fdb","completed":false,"createdAt":"2024-02-21T23:31:26.921Z","_id":"LkrZNljoiLxQQHGM"}
-{"title":"test-update2","description":"test","id":"b9ae3462-aa70-4238-9525-e8bb4e11c849","userId":"20391269-a8ed-4bdd-8e43-be6d5bb11fdb","completed":true,"createdAt":"2024-02-21T23:31:26.921Z","_id":"LkrZNljoiLxQQHGM"}
-{"title":"test-update2","description":"test","id":"b9ae3462-aa70-4238-9525-e8bb4e11c849","userId":"20391269-a8ed-4bdd-8e43-be6d5bb11fdb","completed":false,"createdAt":"2024-02-21T23:31:26.921Z","_id":"LkrZNljoiLxQQHGM"}
-{"$$deleted":true,"_id":"LkrZNljoiLxQQHGM"}
 {"title":"test","description":"test","id":"3a31f2dd-b174-4c37-bb16-a38cad0568cc","userId":"20391269-a8ed-4bdd-8e43-be6d5bb11fdb","completed":false,"createdAt":"2024-02-21T23:31:35.384Z","_id":"AIXg1qERRhH6ER6P"}
-{"title":"test","description":"test","id":"1cea6d54-4620-4c9b-93d5-b1bb597eea35","userId":"20391269-a8ed-4bdd-8e43-be6d5bb11fdb","completed":true,"createdAt":"2024-02-21T23:31:10.007Z","_id":"P25k67aZwdTMlOsc"}
 {"title":"test","description":"test","id":"1cea6d54-4620-4c9b-93d5-b1bb597eea35","userId":"20391269-a8ed-4bdd-8e43-be6d5bb11fdb","completed":false,"createdAt":"2024-02-21T23:31:10.007Z","_id":"P25k67aZwdTMlOsc"}
+{"title":"test","description":"test","id":"5034b8ef-a4e5-4fdc-a0a3-cbdf289280aa","userId":"20391269-a8ed-4bdd-8e43-be6d5bb11fdb","completed":false,"createdAt":"2024-02-21T23:31:08.439Z","_id":"ouxjpBmEkHdhdy0H"}

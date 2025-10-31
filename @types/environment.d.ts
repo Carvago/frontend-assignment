@@ -2,9 +2,7 @@ declare global {
   namespace NodeJS {
     interface ProcessEnv {
       REFRESH_KEY: string;
-      REFRESH_KEY_EXPIRES_IN: string;
       ACCESS_KEY: string;
-      ACCESS_KEY_EXPIRES_IN: string;
     }
   }
 }

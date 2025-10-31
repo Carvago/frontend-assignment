@@ -2,7 +2,7 @@ import express, {Request, Response} from 'express';
 import jwt from 'jsonwebtoken';
 import {isNil, isNotNil} from 'ramda';
 import {isNilOrEmpty} from 'ramda-adjunct';
-import {v4 as uuid} from 'uuid';
+import {randomUUID} from 'crypto';
 import {User, userDB} from '../database/users';
 import {validateCredentialsFromBody} from '../validators/validateCredentialsFromBody';
 import {signAccessToken} from '../utils/signAccessToken';
@@ -21,7 +21,7 @@ userRoutes.post('/api/register', (req: Request, res: Response) => {
     if (isNotNil(user)) return res.status(400).json({error: 'Username is already taken'});
 
     const newUser: User = {
-      id: uuid(),
+      id: randomUUID(),
       createdAt: new Date().toISOString(),
       username,
       password: hashedPassword,
