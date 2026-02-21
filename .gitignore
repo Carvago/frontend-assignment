@@ -51,3 +51,11 @@ Thumbs.db
 *.generated.ts
 *.generated.tsx
 dev--*generated*
+
+# Cypress
+cypress/screenshots
+cypress/videos
+cypress/downloads
+
+# Storybook
+storybook-static

@@ -49,11 +49,17 @@ todoRoutes.put('/api/todo/:id', authenticateToken, (req: Request, res: Response)
   const todoId = validateTodoIdFromParams(req, res);
   const {data} = getAccessTokenDataFromRequest(req, res);
 
-  const updatedTodo = parseNewTodo({...req.body, id: todoId}, req, res);
+  const title = typeof req.body?.title === 'string' ? req.body.title.trim() : undefined;
+  const description = typeof req.body?.description === 'string' ? req.body.description.trim() : '';
+
+  if (!title) {
+    res.status(400).json({error: 'title is required'});
+    return;
+  }
 
   todoDB.update(
     {id: todoId, userId: data.userId},
-    {$set: updatedTodo},
+    {$set: {title, description}},
     {},
     putResponseHandler(res)
   );

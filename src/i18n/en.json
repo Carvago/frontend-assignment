@@ -1,6 +1,74 @@
 {
-  "app.title": "Carvago Frontend Assignment",
-  "app.description": "Assignment in React.js for developers who want to join our team.",
-  "welcome.message": "Welcome to Carvago Front-End Assignment",
-  "welcome.link": "see API docs"
+  "app": {
+    "title": "Carvago Frontend Assignment",
+    "description": "Assignment in React.js for developers who want to join our team."
+  },
+  "welcome": {
+    "message": "Welcome to Carvago Front-End Assignment",
+    "link": "see API docs"
+  },
+  "auth": {
+    "username": "Username",
+    "usernamePlaceholder": "Enter your username",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "passwordConfirm": "Confirm password",
+    "passwordConfirmPlaceholder": "Confirm your password",
+    "passwordsDoNotMatch": "Passwords do not match",
+    "fieldMandatory": "This field is mandatory.",
+    "loading": "Please wait...",
+    "login": {
+      "welcomeHeading": "It's good to have you back!",
+      "welcomeParagraph": "Welcome to our secure portal! To access the full functionality of our app, kindly provide your credentials below. Your privacy is our priority.",
+      "link": "Log in",
+      "noAccount": "Don't have an account?"
+    },
+    "register": {
+      "title": "Create account",
+      "submit": "Create account",
+      "link": "Sign up",
+      "hasAccount": "Already have an account?"
+    },
+    "logout": "Log out",
+    "loggedIn": "Logged in as {{username}}"
+  },
+  "notFound": {
+    "title": "Oops!",
+    "subtitle": "Looks like you're lost. The page you're looking for doesn't exist.",
+    "goBack": "Go back"
+  },
+  "dashboard": {
+    "greeting": "Hello {{name}}!",
+    "addTask": "Add task +",
+    "emptyTitle": "You are amazing!",
+    "emptyMessage": "There is no more task to do.",
+    "todo": "To-do",
+    "completed": "Completed"
+  },
+  "menu": {
+    "settings": "Settings",
+    "logout": "Log out"
+  },
+  "task": {
+    "newTask": "New task",
+    "taskName": "Task name",
+    "taskNamePlaceholder": "Enter task name",
+    "descriptionOptional": "Description (Optional)",
+    "descriptionPlaceholder": "Add a description\u2026",
+    "discard": "Discard",
+    "createTask": "Create task",
+    "fieldMandatory": "This field is mandatory.",
+    "edit": "Edit",
+    "delete": "Delete",
+    "deleteConfirmTitle": "Delete task?",
+    "deleteConfirmMessage": "This action cannot be undone.",
+    "discardChanges": "Discard changes",
+    "saveChanges": "Save changes",
+    "leaveConfirmTitle": "Leave page?",
+    "leaveConfirmMessage": "You have unsaved changes. Are you sure you want to leave?",
+    "leave": "Leave"
+  },
+  "dialog": {
+    "cancel": "Cancel"
+  }
 }

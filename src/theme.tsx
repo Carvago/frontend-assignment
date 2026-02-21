@@ -2,9 +2,9 @@ import {createSystem, defaultConfig} from '@chakra-ui/react';
 
 const fontSizes = {
   heading: {
-    1: '28px',
-    2: '24px',
-    3: '20px',
+    1: '24px',
+    2: '20px',
+    3: '18px',
   },
   text: {
     base: '16px',
@@ -27,6 +27,10 @@ const fontWeights = {
 const theme = createSystem(defaultConfig, {
   theme: {
     tokens: {
+      fonts: {
+        body: {value: "'Inter', sans-serif"},
+        heading: {value: "'Inter', sans-serif"},
+      },
       colors: {
         'text-primary': {value: '#001141'},
         'text-secondary': {value: '#4D5667'},
@@ -37,8 +41,10 @@ const theme = createSystem(defaultConfig, {
         'fill-brand': {value: '#0F62FE'},
         'fill-brand-hover': {value: '#0043CE'},
         'fill-darkBlue': {value: '#001141'},
-        'fill-gray': {value: '#F1F2F6'},
         'fill-gray-hover': {value: '#E6E8EF'},
+        'fill-gray': {value: '#F1F2F6'},
+        'fill-danger': {value: '#B71C1C'},
+        'fill-danger-hover': {value: '#911111'},
         'fill-gray-lightest': {value: '#F1F2F6'},
         'fill-white': {value: '#FFFFFF'},
 
@@ -52,6 +58,18 @@ const theme = createSystem(defaultConfig, {
         'heading.3': {value: fontSizes.heading[3]},
         'text.base': {value: fontSizes.text.base},
         'text.small': {value: fontSizes.text.small},
+        // Chakra Heading size="4xl" etc. use these tokens via textStyle
+        xs: {value: '0.75rem'},
+        sm: {value: '0.875rem'},
+        md: {value: '1rem'},
+        lg: {value: '1.125rem'},
+        xl: {value: '1.25rem'},
+        '2xl': {value: '1.5rem'},
+        '3xl': {value: '1.875rem'},
+        '4xl': {value: '2.25rem'},
+        '5xl': {value: '3rem'},
+        '6xl': {value: '3.75rem'},
+        '7xl': {value: '4.5rem'},
       },
       fontWeights: {
         'heading.1': {value: fontWeights.heading[1]},
@@ -68,6 +86,8 @@ const theme = createSystem(defaultConfig, {
           backgroundColor: '#0F62FE',
           color: '#FFFFFF',
           borderRadius: '100px',
+          height: '40px',
+          _hover: {backgroundColor: 'fill-brand-hover'},
         },
       },
     },

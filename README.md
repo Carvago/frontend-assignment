@@ -3,6 +3,8 @@
 - This repository is built on [Create React App](https://github.com/facebook/create-react-app) with TypeScript configuration
 - [Chakra Theme](https://chakra-ui.com/) is set up with all the colors and sizes
 - For unit testing, [Jest](https://jestjs.io/) is already installed
+- E2E tests use [Cypress](https://www.cypress.io/). Start the app (`npm start`), then run `npm run cypress:open` or `npm run cypress:run`
+- [Storybook](https://storybook.js.org/) is set up for developing and viewing UI components in isolation. Run `npm run storybook` and open [localhost:6006](http://localhost:6006/)
 - You will use our prettier, eslint, and typescript config for static testing <br/> `npm run eslint && npm run prettify && npm run typecheck`
 
 For a quick start follow these commands
@@ -51,5 +53,6 @@ You will create a simple to-do app, with a user register and login. You will wor
 - [Figma specification](https://www.figma.com/file/JoD25P1n4ALPTdt1wesM1S/Zentask---Frontend-Assignment?type=design&t=qZXHzbWa37NSYGcn-6)
 - [Chakra UI](https://chakra-ui.com/)
 - [Jest](https://jestjs.io/)
+- [Storybook](http://localhost:6006/) _(run `npm run storybook` first)_
 
 **That's it! Good luck!**

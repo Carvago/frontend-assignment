@@ -5,6 +5,7 @@ import swaggerUi from 'swagger-ui-express';
 
 import todoRoutes from './routes/todoRoutes';
 import userRoutes from './routes/userRoutes';
+import {seedTodoRoute} from './routes/seedTodoRoute';
 
 import openApiDocument from './swagger/openApi.json';
 
@@ -16,6 +17,8 @@ const port = 3001;
 app.use(express.json());
 app.use(cors());
 
+// Seed route registered first so it is not shadowed by /api/todo/:id
+app.use(seedTodoRoute);
 app.use(todoRoutes);
 app.use(userRoutes);
 
