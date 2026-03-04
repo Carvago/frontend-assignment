@@ -1,14 +1,3 @@
-/**
- *
- * GlobalStyle
- *
- * A helper function to generate a special StyledComponent that handles global styles.
- * Normally, styled components are automatically scoped to a local CSS class and therefore isolated from
- * other components. In the case of createGlobalStyle, this limitation is removed and things like CSS
- * resets or base stylesheets can be applied.
- *
- * @see https://styled-components.com/docs/api
- */
 import {createGlobalStyle} from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
@@ -28,11 +17,7 @@ const GlobalStyle = createGlobalStyle`
      margin: 0;
      padding: 0;
      border: 0;
-     font-size: 100%;
-     font: inherit;
      vertical-align: baseline;
-     background-color: #E5E5E5;
-     color: #091E42;
    }
    html, body, #root{
     height: 100%;
@@ -41,7 +26,6 @@ const GlobalStyle = createGlobalStyle`
    a {
      text-decoration: none;
    }
-   /* HTML5 display-role reset for older browsers */
    article, aside, details, figcaption, figure,
    footer, header, hgroup, menu, nav, section {
      display: block;
@@ -66,7 +50,7 @@ const GlobalStyle = createGlobalStyle`
      line-height: 1;
      margin: 0;
      padding: 0;
-     font-family: Open-Sans, Helvetica, Sans-Serif;
+     font-family: 'Inter', sans-serif;
      font-size: 16px;
      height: 100%;
    }

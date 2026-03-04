@@ -1,6 +1,49 @@
 {
-  "app.title": "Carvago Frontend Assignment",
-  "app.description": "Assignment in React.js for developers who want to join our team.",
-  "welcome.message": "Welcome to Carvago Front-End Assignment",
-  "welcome.link": "see API docs"
+  "app.title": "Zentask",
+  "app.description": "Zentask - Task management application",
+
+  "auth.login.heading": "It's good to have you back!",
+  "auth.login.subtitle": "Welcome to our secure portal! To access the full functionality of our app, kindly provide your credentials below. Your privacy is our priority.",
+  "auth.login.button": "Log in",
+  "auth.login.registerLink": "Don't have an account? Register",
+
+  "auth.register.heading": "Create your account",
+  "auth.register.subtitle": "Welcome! Create your account to start managing your tasks efficiently.",
+  "auth.register.button": "Create account",
+  "auth.register.loginLink": "Already have an account? Log in",
+
+  "auth.field.username": "Username",
+  "auth.field.password": "Password",
+  "auth.logout": "Log out",
+
+  "overview.greeting": "Hello {{name}}!",
+  "overview.addTask": "Add task",
+
+  "overview.section.todo": "To-do",
+  "overview.section.completed": "Completed",
+
+  "overview.empty.title": "You are amazing!",
+  "overview.empty.subtitle": "There is no more task to do.",
+
+  "task.new.heading": "New task",
+  "task.new.create": "Create task",
+  "task.new.discard": "Discard",
+
+  "task.edit.discardChanges": "Discard changes",
+  "task.edit.saveChanges": "Save changes",
+
+  "task.field.title": "Task name",
+  "task.field.description": "Description",
+
+  "task.actions.edit": "Edit",
+  "task.actions.delete": "Delete",
+
+  "validation.required": "This field is required",
+
+  "error.generic": "Something went wrong. Please try again.",
+  "error.retry": "Retry",
+  "error.goHome": "Go home",
+  "error.invalidCredentials": "Invalid username or password.",
+  "error.userExists": "Username already exists.",
+  "error.notFound": "Page not found"
 }

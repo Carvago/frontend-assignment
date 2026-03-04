@@ -48,3 +48,5 @@ Thumbs.db
 /.eslintcache
 
 *.generated.stories.tsx
+src/api/generated.ts
+/e2e/
