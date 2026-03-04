@@ -45,6 +45,74 @@ You will create a simple to-do app, with a user register and login. You will wor
 4. On todo click, you will be redirected to the todo detail page
 5. On the todo detail page, you see todo in full length and have options to edit the todo as well as delete and mark it as completed
 
+---
+
+## Implementation Notes
+
+### Architecture
+
+The app follows a feature-based folder structure with clear separation of concerns:
+
+```
+src/
+  api/            # Axios client with JWT interceptors + Orval-generated React Query hooks
+  components/     # Reusable UI components (Button, Card, TextField, Checkbox, etc.)
+  features/       # Feature modules (todos — TodoItem, TodoForm, TodoSections, QuickActions)
+  pages/          # Route-level pages (Login, Register, Overview, NewTask, EditTask, NotFound)
+  providers/      # Context providers (AuthProvider, QueryProvider)
+  routes/         # Router config, route guards (ProtectedRoute), path constants
+  utils/          # Utilities (formatDate, storage, Zod validation schemas)
+  i18n/           # i18next config and English translations
+```
+
+### Key Technical Decisions
+
+**API layer — Orval + React Query + Axios**
+
+All API types and React Query hooks are auto-generated from the backend Swagger spec via [Orval](https://orval.dev/) (`npx orval`). The generated file `src/api/generated.ts` should never be edited manually. Axios client (`src/api/client.ts`) handles JWT token attachment and silent token refresh via interceptors.
+
+**Form management — react-hook-form + Zod**
+
+Forms (Login, Register, TodoForm) use [react-hook-form](https://react-hook-form.com/) with [@hookform/resolvers/zod](https://github.com/react-hook-form/resolvers) for schema-based validation. Validation schemas are defined in `src/utils/schemas.ts` and are typed against the generated API types (`LoginRequest`, `CreateTodoRequest`). Error messages use i18n keys that get translated at the component level via `t()`.
+
+**State management — React Query + optimistic updates**
+
+Server state is managed entirely through React Query. The overview page uses optimistic updates for toggle/delete operations — the UI updates immediately and rolls back on error. No client-side state library (Redux, Zustand) is needed.
+
+**Authentication — JWT with refresh tokens**
+
+`AuthProvider` manages login/register/logout and persists tokens in localStorage. The Axios interceptor silently refreshes expired access tokens using the refresh token. `ProtectedRoute` guards authenticated pages.
+
+**Styling — Chakra UI v3**
+
+All components are built on Chakra UI with a custom theme. Reusable UI primitives (`TextField`, `PasswordField`, `TextArea`, `Button`, `Card`, `Checkbox`) wrap Chakra components with consistent styling.
+
+**Internationalization — react-i18next**
+
+All user-facing strings are externalized in `src/i18n/en.json`. Components access translations via the `useTranslation` hook.
+
+**Animations — Framer Motion**
+
+Todo list items use `AnimatePresence` and `motion.div` for enter/exit animations and layout transitions.
+
+### Testing
+
+- **Unit tests** (Jest + Testing Library): Component and utility tests in `*.test.ts(x)` files. Run with `npm test`.
+- **E2E tests** (Playwright): Full user flow tests in `e2e/specs/` using the Page Object Model pattern (`e2e/pom/`). Run with `npm run e2e`.
+- **Static analysis**: `npm run eslint && npm run prettify && npm run typecheck`
+
+### Scripts
+
+| Command | Description |
+|---|---|
+| `npm start` | Start dev server (frontend on :3000, backend on :3001) |
+| `npm test` | Run Jest unit tests |
+| `npm run e2e` | Run Playwright E2E tests |
+| `npm run eslint` | Lint with ESLint |
+| `npm run prettify` | Format with Prettier |
+| `npm run typecheck` | TypeScript type check |
+| `npx orval` | Regenerate API hooks from Swagger |
+
 ## Important links
 
 - [Api docs](http://localhost:3001/api/docs) _(will work only when the project is locally started)_

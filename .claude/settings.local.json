@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npx orval:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx jest:*)",
+      "Bash(npm run:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npx playwright:*)",
+      "Bash(curl:*)",
+      "Bash(npm test:*)",
+      "Bash(grep:*)",
+      "Bash(npm ls:*)",
+      "Bash(node:*)",
+      "Bash(taskkill:*)",
+      "Bash(rm:*)",
+      "mcp__chakra-ui__list_components",
+      "mcp__chakra-ui__get_theme",
+      "mcp__chakra-ui__v2_to_v3_code_review",
+      "mcp__chakra-ui__get_component_example",
+      "mcp__chakra-ui__get_component_props"
+    ]
+  }
+}

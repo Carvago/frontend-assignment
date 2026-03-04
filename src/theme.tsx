@@ -61,16 +61,6 @@ const theme = createSystem(defaultConfig, {
         'text.alternative': {value: fontWeights.text.alternative},
       },
     },
-    recipes: {
-      button: {
-        base: {
-          bg: 'unset',
-          backgroundColor: '#0F62FE',
-          color: '#FFFFFF',
-          borderRadius: '100px',
-        },
-      },
-    },
   },
 });
 

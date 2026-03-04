@@ -1,6 +1,7 @@
+import {RouterProvider} from 'react-router-dom';
 import {Helmet} from 'react-helmet-async';
 import {useTranslation} from 'react-i18next';
-import {Welcome} from './pages/Welcome';
+import {router} from './routes/router';
 
 function App() {
   const {i18n, t} = useTranslation();
@@ -15,10 +16,7 @@ function App() {
         <meta name="description" content={t('app.description')} />
       </Helmet>
 
-      {/*
-       * start from here
-       */}
-      <Welcome />
+      <RouterProvider router={router} />
     </>
   );
 }
