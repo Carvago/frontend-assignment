@@ -9,14 +9,49 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@assets/*": [
+        "src/assets/*"
+      ],
+      "@pages/*": [
+        "src/pages/*"
+      ],
+      "@icons/*": [
+        "src/assets/icons/*"
+      ]
+    }
   },
-  "include": ["backend/**/*", "./src/**/*"],
-  "exclude": ["node_modules"],
-  "files": ["./@types/svg.d.ts", "@types/environment.d.ts"]
+  "include": [
+    "backend/**/*",
+    "./src/**/*",
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "files": [
+    "./@types/svg.d.ts",
+    "@types/environment.d.ts"
+  ]
 }

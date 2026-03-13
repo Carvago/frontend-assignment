@@ -1,4 +1,4 @@
-import {createSystem, defaultConfig} from '@chakra-ui/react';
+import {createSystem, defaultConfig, defineRecipe, defineSlotRecipe} from '@chakra-ui/react';
 
 const fontSizes = {
   heading: {
@@ -25,6 +25,11 @@ const fontWeights = {
 };
 
 const theme = createSystem(defaultConfig, {
+  globalCss: {
+    "*": {
+      focusRingColor: "#0F62FE !important",
+    },
+  },
   theme: {
     tokens: {
       colors: {
@@ -62,14 +67,117 @@ const theme = createSystem(defaultConfig, {
       },
     },
     recipes: {
-      button: {
+      button: defineRecipe({
         base: {
-          bg: 'unset',
-          backgroundColor: '#0F62FE',
-          color: '#FFFFFF',
           borderRadius: '100px',
+          fontWeight: 'heading.3',
+          fontSize: 'text.base',
+          h: '40px',
+          gap: '2',
+          border: 'none',
+          cursor: 'pointer',
+          _disabled: {
+            opacity: 0.4,
+            cursor: 'not-allowed',
+            pointerEvents: 'none',
+          },
         },
-      },
+        variants: {
+          variant: {
+            solid: {
+              bg: 'fill-brand',
+              color: 'text-white',
+              _hover: {bg: 'fill-brand-hover'},
+              _active: {bg: 'fill-brand-hover'},
+            },
+            subtle: {
+              bg: 'fill-white',
+              color: 'text-primary',
+              boxShadow: '0px 2px 8px rgba(0, 17, 65, 0.12)',
+              _hover: {bg: 'fill-gray'},
+              _active: {bg: 'fill-gray'},
+            },
+            ghost: {
+              bg: 'fill-gray',
+              color: 'text-primary',
+              _hover: {bg: 'fill-gray-hover'},
+              _active: {bg: 'fill-gray-hover'},
+            },
+          },
+        },
+        defaultVariants: {
+          variant: 'solid',
+        },
+      }),
+      input: defineRecipe({
+        base: {
+          bg: 'fill-white',
+          border: '1px solid',
+          borderColor: 'border-gray',
+          borderRadius: '8px',
+          fontSize: 'text.base',
+          fontWeight: 'text.base',
+          color: 'text-primary',
+          px: '12px',
+          h: '44px',
+          _placeholder: {color: 'text-tertiary'},
+          focusRing: 'mixed' ,
+          focusRingColor: 'border-gray',
+          '&:hover:not(:focus-visible)': {
+            borderColor: 'border-brand',
+          },
+          _focusVisible: {
+            outline: 'none',
+            boxShadow: '0 0 0 4px color-mix(in srgb, var(--chakra-colors-fill-brand) 20%, transparent)',
+          },
+          _invalid: {
+            borderColor: 'border-danger',
+            focusRingColor: 'border-danger',
+            '&:hover:not(:focus-visible)': {
+              borderColor: 'var(--chakra-colors-border-danger)',
+              boxShadow: 'none',
+            },
+            _focusVisible: {
+              boxShadow: 'none',
+            },
+          },
+        },
+      }),
+      textarea: defineRecipe({
+        base: {
+          bg: 'fill-white',
+          border: '1px solid',
+          borderColor: 'border-gray',
+          borderRadius: '8px',
+          fontSize: 'text.base',
+          fontWeight: 'text.base',
+          color: 'text-primary',
+          px: '12px',
+          minH: '96px',
+          py: '10px',
+          resize: 'none',
+          _placeholder: {color: 'text-tertiary'},
+          '&:hover:not(:focus-visible)': {
+            borderColor: 'var(--chakra-colors-border-brand)',
+          },
+          _focusVisible: {
+            outline: 'none',
+            borderColor: 'var(--chakra-colors-border-brand)',
+            boxShadow: '0 0 0 4px color-mix(in srgb, var(--chakra-colors-fill-brand) 20%, transparent)',
+          },
+          _invalid: {
+            borderColor: 'var(--chakra-colors-border-danger)',
+            '&:hover:not(:focus-visible)': {
+              borderColor: 'var(--chakra-colors-border-danger)',
+              boxShadow: 'none',
+            },
+            _focusVisible: {
+              borderColor: 'var(--chakra-colors-border-danger)',
+              boxShadow: 'none',
+            },
+          },
+        },
+      }),
     },
   },
 });
