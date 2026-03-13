@@ -1,4 +1,4 @@
-import {createSystem, defaultConfig, defineRecipe, defineSlotRecipe} from '@chakra-ui/react';
+import {createSystem, defaultConfig, defineRecipe} from '@chakra-ui/react';
 
 const fontSizes = {
   heading: {
