@@ -9,6 +9,8 @@ coverage
 dist
 build
 out-tsc
+.next
+tsconfig.tsbuildinfo
 
 # dependencies
 /node_modules
