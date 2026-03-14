@@ -9,18 +9,20 @@ import {Button} from '@components/Button';
 import {Input} from '@components/Input';
 import {PasswordInput} from '@components/Input';
 import IconForward from '@icons/icon-foward.svg';
-import {login} from '@/api/auth';
-import {loginSchema} from '@/validation/loginSchema';
+import {register} from '@/api/auth';
+import {registerSchema} from '@/validation/registerSchema';
 
 type FormErrors = {
   username?: string;
   password?: string;
+  confirmPassword?: string;
 };
 
-export function LoginPage() {
+export function RegisterPage() {
   const router = useRouter();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState<FormErrors>({});
   const [isLoading, setIsLoading] = useState(false);
 
@@ -29,7 +31,7 @@ export function LoginPage() {
     setErrors({});
 
     try {
-      await loginSchema.validate({username, password}, {abortEarly: false});
+      await registerSchema.validate({username, password, confirmPassword}, {abortEarly: false});
     } catch (err) {
       if (err instanceof ValidationError) {
         const fieldErrors: FormErrors = {};
@@ -43,11 +45,12 @@ export function LoginPage() {
 
     setIsLoading(true);
     try {
-      await login({username, password});
+      await register({username, password});
       router.push('/todos');
     } catch {
       setUsername('');
       setPassword('');
+      setConfirmPassword('');
     } finally {
       setIsLoading(false);
     }
@@ -75,10 +78,10 @@ export function LoginPage() {
           <VStack gap="6" align="stretch">
             <VStack gap="2" align="start">
               <Text fontSize="heading.2" fontWeight="heading.1" color="text-primary">
-                It's good to have you back!
+                Create an account
               </Text>
               <Text fontSize="text.base" fontWeight="text.base" color="text-secondary">
-                Welcome to our secure portal! To access the full functionality of our app, kindly provide your credentials below. Your privacy is our priority.
+                Join Zentask today! Fill in your details below to get started and take control of your tasks.
               </Text>
             </VStack>
 
@@ -100,6 +103,14 @@ export function LoginPage() {
                   error={errors.password}
                   onChange={e => setPassword(e.target.value)}
                 />
+                <PasswordInput
+                  label="Confirm password"
+                  required
+                  name="confirmPassword"
+                  value={confirmPassword}
+                  error={errors.confirmPassword}
+                  onChange={e => setConfirmPassword(e.target.value)}
+                />
                 <Button
                   type="submit"
                   variant="solid"
@@ -107,15 +118,15 @@ export function LoginPage() {
                   disabled={isLoading}
                   rightIcon={<IconForward width={16} height={16} />}
                 >
-                  {isLoading ? 'Logging in...' : 'Log in'}
+                  {isLoading ? 'Signing up...' : 'Sign up'}
                 </Button>
               </VStack>
             </form>
 
             <Text fontSize="text.small" color="text-secondary" textAlign="center">
-              Don't have an account?{' '}
-              <Link href="/register" style={{color: 'var(--chakra-colors-fill-brand)', fontWeight: 'var(--chakra-font-weights-text-alternative)'}}>
-                Sign up
+              Already have an account?{' '}
+              <Link href="/login" style={{color: 'var(--chakra-colors-fill-brand)', fontWeight: 'var(--chakra-font-weights-text-alternative)'}}>
+                Log in
               </Link>
             </Text>
           </VStack>

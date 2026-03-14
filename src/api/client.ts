@@ -1,4 +1,5 @@
 import axios, {AxiosError} from 'axios';
+import Cookies from 'js-cookie';
 
 import {toaster} from '@/components/ui/toaster';
 
@@ -13,8 +14,8 @@ const client = axios.create({
   },
 });
 
-client.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
+client.interceptors.request.use(config => {
+  const token = Cookies.get('token');
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -22,10 +23,10 @@ client.interceptors.request.use((config) => {
 });
 
 client.interceptors.response.use(
-  (response) => response,
+  response => response,
   (error: AxiosError<ApiErrorResponse>) => {
     const message = error.response?.data?.error ?? 'Something went wrong';
-    console.log(error.response, 'message');
+
     toaster.create({
       title: 'Error',
       description: message,
@@ -33,7 +34,7 @@ client.interceptors.response.use(
     });
 
     return Promise.reject(error);
-  }
+  },
 );
 
 export default client;

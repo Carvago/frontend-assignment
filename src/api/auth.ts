@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie';
+
 import client from './client';
 
 interface AuthResponse {
@@ -10,9 +12,24 @@ interface Credentials {
   password: string;
 }
 
+function saveTokens(data: AuthResponse): void {
+  Cookies.set('token', data.accessToken, {sameSite: 'strict'});
+  Cookies.set('refreshToken', data.refreshToken, {sameSite: 'strict'});
+}
+
+export function clearTokens(): void {
+  Cookies.remove('token');
+  Cookies.remove('refreshToken');
+}
+
 export async function login(credentials: Credentials): Promise<AuthResponse> {
   const {data} = await client.post<AuthResponse>('/login', credentials);
-  localStorage.setItem('token', data.accessToken);
-  localStorage.setItem('refreshToken', data.refreshToken);
+  saveTokens(data);
+  return data;
+}
+
+export async function register(credentials: Credentials): Promise<AuthResponse> {
+  const {data} = await client.post<AuthResponse>('/register', credentials);
+  saveTokens(data);
   return data;
 }
