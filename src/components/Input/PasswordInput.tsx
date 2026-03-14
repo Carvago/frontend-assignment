@@ -1,5 +1,5 @@
 import {Box, Input as ChakraInput, Text} from '@chakra-ui/react';
-import {useState} from 'react';
+import {useState, type ChangeEventHandler} from 'react';
 import {passwordToggleStyle} from './Input.styles';
 import {BaseInputProps} from './Input.types';
 import {InputLabel} from './InputLabel';
@@ -15,7 +15,7 @@ export function PasswordInput({label, required, value, onChange, helperText, err
           name={name}
           type={showPassword ? 'text' : 'password'}
           value={value}
-          onChange={onChange as React.ChangeEventHandler<HTMLInputElement>}
+          onChange={onChange as ChangeEventHandler<HTMLInputElement>}
           placeholder={placeholder}
           aria-invalid={!!error}
           pr="44px"

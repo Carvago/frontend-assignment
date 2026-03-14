@@ -1,8 +1,10 @@
+import {ChangeEvent} from 'react';
+
 export interface BaseInputProps {
   label?: string;
   required?: boolean;
   value?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   helperText?: string;
   error?: string;
   placeholder?: string;

@@ -1,16 +1,23 @@
 'use client';
 
 import {Box, Text, VStack} from '@chakra-ui/react';
-import {useState} from 'react';
+import {useState, type ChangeEvent, type FormEvent} from 'react';
 import {useRouter} from 'next/navigation';
 import Link from 'next/link';
-import {ValidationError} from 'yup';
+
 import {Button} from '@components/Button';
 import {Input} from '@components/Input';
 import {PasswordInput} from '@components/Input';
 import IconForward from '@icons/icon-foward.svg';
 import {register} from '@/api/auth';
 import {registerSchema} from '@/validation/registerSchema';
+import {getValidationErrors} from '@/utils/getValidationErrors';
+
+type FormFields = {
+  username: string;
+  password: string;
+  confirmPassword: string;
+};
 
 type FormErrors = {
   username?: string;
@@ -18,39 +25,34 @@ type FormErrors = {
   confirmPassword?: string;
 };
 
+const initialFields: FormFields = {username: '', password: '', confirmPassword: ''};
+
 export function RegisterPage() {
   const router = useRouter();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [fields, setFields] = useState<FormFields>(initialFields);
   const [errors, setErrors] = useState<FormErrors>({});
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const setField = (key: keyof FormFields) => (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFields(prev => ({...prev, [key]: e.target.value}));
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setErrors({});
 
-    try {
-      await registerSchema.validate({username, password, confirmPassword}, {abortEarly: false});
-    } catch (err) {
-      if (err instanceof ValidationError) {
-        const fieldErrors: FormErrors = {};
-        err.inner.forEach(e => {
-          if (e.path) fieldErrors[e.path as keyof FormErrors] = e.message;
-        });
-        setErrors(fieldErrors);
-        return;
-      }
+    const fieldErrors = await getValidationErrors<FormErrors>(registerSchema, fields);
+    if (fieldErrors) {
+      setErrors(fieldErrors);
+      return;
     }
 
     setIsLoading(true);
     try {
-      await register({username, password});
+      await register({username: fields.username, password: fields.password});
       router.push('/todos');
     } catch {
-      setUsername('');
-      setPassword('');
-      setConfirmPassword('');
+      setFields(initialFields);
     } finally {
       setIsLoading(false);
     }
@@ -91,25 +93,25 @@ export function RegisterPage() {
                   label="Username"
                   required
                   name="username"
-                  value={username}
+                  value={fields.username}
                   error={errors.username}
-                  onChange={e => setUsername(e.target.value)}
+                  onChange={setField('username')}
                 />
                 <PasswordInput
                   label="Password"
                   required
                   name="password"
-                  value={password}
+                  value={fields.password}
                   error={errors.password}
-                  onChange={e => setPassword(e.target.value)}
+                  onChange={setField('password')}
                 />
                 <PasswordInput
                   label="Confirm password"
                   required
                   name="confirmPassword"
-                  value={confirmPassword}
+                  value={fields.confirmPassword}
                   error={errors.confirmPassword}
-                  onChange={e => setConfirmPassword(e.target.value)}
+                  onChange={setField('confirmPassword')}
                 />
                 <Button
                   type="submit"
@@ -125,9 +127,9 @@ export function RegisterPage() {
 
             <Text fontSize="text.small" color="text-secondary" textAlign="center">
               Already have an account?{' '}
-              <Link href="/login" style={{color: 'var(--chakra-colors-fill-brand)', fontWeight: 'var(--chakra-font-weights-text-alternative)'}}>
-                Log in
-              </Link>
+              <Text as="span" color="fill-brand" fontWeight="text.alternative">
+                <Link href="/login">Log in</Link>
+              </Text>
             </Text>
           </VStack>
         </Box>

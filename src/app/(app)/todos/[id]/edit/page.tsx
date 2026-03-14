@@ -1,4 +1,4 @@
-import {TodoDetailPage} from '@/pages/TodoDetailPage';
+import {EditTodoPage} from '@/pages/EditTodoPage';
 
 type Props = {
   params: Promise<{id: string}>;
@@ -6,5 +6,5 @@ type Props = {
 
 export default async function Page({params}: Props) {
   const {id} = await params;
-  return <TodoDetailPage id={id} />;
+  return <EditTodoPage id={id} />;
 }

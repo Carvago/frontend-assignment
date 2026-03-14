@@ -1,37 +1,49 @@
 'use client';
 
 import {Box, Text} from '@chakra-ui/react';
-import {useState, type ChangeEvent, type FormEvent} from 'react';
+import {useEffect, useState, type ChangeEvent, type FormEvent} from 'react';
 import {useRouter} from 'next/navigation';
 
 import {Button} from '@/components/Button';
 import {Input} from '@/components/Input';
 import {Textarea} from '@/components/Input';
 import {Header} from '@/components/Header';
-import {createTodo} from '@/api/todos';
+import {getTodo, updateTodo} from '@/api/todos';
 import {todoSchema} from '@/validation/todoSchema';
 import type {TodoFormErrors} from '@/validation/todoSchema';
 import {getValidationErrors} from '@/utils/getValidationErrors';
 import IconBackwards from '@icons/icon-backwards.svg';
 import IconCheck from '@icons/icon-check.svg';
+import type {Todo} from '@/types';
+
+type EditTodoPageProps = {
+  id: string;
+};
 
 type FormFields = {
   title: string;
   description: string;
 };
 
-const initialFields: FormFields = {title: '', description: ''};
-
-export function NewTodoPage() {
+export function EditTodoPage({id}: EditTodoPageProps) {
   const router = useRouter();
-
-  const [fields, setFields] = useState<FormFields>(initialFields);
+  const [todo, setTodo] = useState<Todo | null>(null);
+  const [fields, setFields] = useState<FormFields>({title: '', description: ''});
   const [errors, setErrors] = useState<TodoFormErrors>({});
   const [isLoading, setIsLoading] = useState(false);
 
   const setField = (key: keyof FormFields) => (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFields(prev => ({...prev, [key]: e.target.value}));
   };
+
+  useEffect(() => {
+    getTodo(id)
+      .then(data => {
+        setTodo(data);
+        setFields({title: data.title, description: data.description ?? ''});
+      })
+      .catch(() => router.replace('/todos'));
+  }, [id, router]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -45,7 +57,7 @@ export function NewTodoPage() {
 
     setIsLoading(true);
     try {
-      await createTodo(fields);
+      await updateTodo(id, fields);
       router.push('/todos');
     } finally {
       setIsLoading(false);
@@ -61,7 +73,7 @@ export function NewTodoPage() {
             <IconBackwards width={16} height={16} />
           </Button>
           <Text fontSize="heading.2" fontWeight="heading.1" color="text-primary">
-            New task
+            {todo?.title ?? ''}
           </Text>
         </Box>
 
@@ -93,7 +105,7 @@ export function NewTodoPage() {
                 width={{base: '100%', md: 'auto'}}
                 onClick={() => router.back()}
               >
-                Discard
+                Discard changes
               </Button>
               <Button
                 type="submit"
@@ -102,7 +114,7 @@ export function NewTodoPage() {
                 disabled={isLoading}
                 rightIcon={<IconCheck width={16} height={16} />}
               >
-                Create task
+                Save changes
               </Button>
             </Box>
           </Box>

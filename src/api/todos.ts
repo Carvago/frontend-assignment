@@ -12,6 +12,16 @@ export async function createTodo(payload: Pick<Todo, 'title' | 'description'>): 
   return data;
 }
 
+export async function getTodo(id: string): Promise<Todo> {
+  const {data} = await client.get<Todo>(`/todo/${id}`);
+  return data;
+}
+
+export async function updateTodo(id: string, payload: Pick<Todo, 'title' | 'description'>): Promise<Todo> {
+  const {data} = await client.put<Todo>(`/todo/${id}`, payload);
+  return data;
+}
+
 export async function deleteTodo(id: string): Promise<void> {
   await client.delete(`/todo/${id}`);
 }

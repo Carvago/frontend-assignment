@@ -10,5 +10,5 @@ export interface ButtonProps {
   onClick?: () => void;
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
-  width?: string;
+  width?: string | Record<string, string>;
 }

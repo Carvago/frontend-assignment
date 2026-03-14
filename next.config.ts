@@ -1,32 +1,28 @@
 import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
-  turbopack: {
-    rules: {
-      '*.svg': {
-        loaders: [
-          {
-            loader: '@svgr/webpack',
-            options: {
-              svgo: true,
-              svgoConfig: {
-                plugins: [
-                  {
-                    name: 'removeViewBox',
-                    active: false,
-                  },
-                  {
-                    name: 'removeDimensions',
-                    active: true,
-                  },
-                ],
-              },
+  experimental: {
+    optimizePackageImports: ['@chakra-ui/react'],
+  },
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: [
+        {
+          loader: '@svgr/webpack',
+          options: {
+            svgo: true,
+            svgoConfig: {
+              plugins: [
+                {name: 'removeViewBox', active: false},
+                {name: 'removeDimensions', active: true},
+              ],
             },
           },
-        ],
-        as: '*.js',
-      },
-    },
+        },
+      ],
+    });
+    return config;
   },
 };
 

@@ -91,11 +91,10 @@ const theme = createSystem(defaultConfig, {
               _active: {bg: 'fill-brand-hover'},
             },
             subtle: {
-              bg: 'fill-white',
+              bg: 'fill-gray',
               color: 'text-primary',
-              boxShadow: '0px 2px 8px rgba(0, 17, 65, 0.12)',
-              _hover: {bg: 'fill-gray'},
-              _active: {bg: 'fill-gray'},
+              _hover: {bg: 'fill-gray-hover'},
+              _active: {bg: 'fill-gray-hover'},
             },
             ghost: {
               bg: 'fill-gray',

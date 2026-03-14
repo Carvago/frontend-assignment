@@ -1,61 +1,71 @@
 'use client';
 
 import {Box, Text, VStack} from '@chakra-ui/react';
-import {useState} from 'react';
+import {useState, type ChangeEvent, type FormEvent} from 'react';
 import {useRouter} from 'next/navigation';
 import Link from 'next/link';
-import {ValidationError} from 'yup';
+
 import {Button} from '@components/Button';
 import {Input} from '@components/Input';
 import {PasswordInput} from '@components/Input';
 import IconForward from '@icons/icon-foward.svg';
 import {login} from '@/api/auth';
 import {loginSchema} from '@/validation/loginSchema';
+import {getValidationErrors} from '@/utils/getValidationErrors';
+
+type FormFields = {
+  username: string;
+  password: string;
+};
 
 type FormErrors = {
   username?: string;
   password?: string;
 };
 
+const initialFields: FormFields = {username: '', password: ''};
+
 export function LoginPage() {
   const router = useRouter();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [fields, setFields] = useState<FormFields>(initialFields);
   const [errors, setErrors] = useState<FormErrors>({});
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const setField =
+    (key: keyof FormFields) => (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setFields((prev) => ({...prev, [key]: e.target.value}));
+    };
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setErrors({});
 
-    try {
-      await loginSchema.validate({username, password}, {abortEarly: false});
-    } catch (err) {
-      if (err instanceof ValidationError) {
-        const fieldErrors: FormErrors = {};
-        err.inner.forEach(e => {
-          if (e.path) fieldErrors[e.path as keyof FormErrors] = e.message;
-        });
-        setErrors(fieldErrors);
-        return;
-      }
+    const fieldErrors = await getValidationErrors<FormErrors>(loginSchema, fields);
+    if (fieldErrors) {
+      setErrors(fieldErrors);
+      return;
     }
 
     setIsLoading(true);
     try {
-      await login({username, password});
+      await login(fields);
       router.push('/todos');
     } catch {
-      setUsername('');
-      setPassword('');
+      setFields(initialFields);
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <Box minH="100vh" bg="fill-gray" display="flex" flexDirection="column" alignItems="center" p="4">
-
+    <Box
+      minH="100vh"
+      bg="fill-gray"
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      p="4"
+    >
       <Box display="flex" alignItems="center" gap="2" py="6">
         <img src="/logo.svg" alt="Zentask logo" width={36} />
         <Text fontSize="heading.3" fontWeight="heading.2" color="text-primary">
@@ -78,7 +88,8 @@ export function LoginPage() {
                 It's good to have you back!
               </Text>
               <Text fontSize="text.base" fontWeight="text.base" color="text-secondary">
-                Welcome to our secure portal! To access the full functionality of our app, kindly provide your credentials below. Your privacy is our priority.
+                Welcome to our secure portal! To access the full functionality of our app, kindly
+                provide your credentials below. Your privacy is our priority.
               </Text>
             </VStack>
 
@@ -88,17 +99,17 @@ export function LoginPage() {
                   label="Username"
                   required
                   name="username"
-                  value={username}
+                  value={fields.username}
                   error={errors.username}
-                  onChange={e => setUsername(e.target.value)}
+                  onChange={setField('username')}
                 />
                 <PasswordInput
                   label="Password"
                   required
                   name="password"
-                  value={password}
+                  value={fields.password}
                   error={errors.password}
-                  onChange={e => setPassword(e.target.value)}
+                  onChange={setField('password')}
                 />
                 <Button
                   type="submit"
@@ -114,9 +125,9 @@ export function LoginPage() {
 
             <Text fontSize="text.small" color="text-secondary" textAlign="center">
               Don't have an account?{' '}
-              <Link href="/register" style={{color: 'var(--chakra-colors-fill-brand)', fontWeight: 'var(--chakra-font-weights-text-alternative)'}}>
-                Sign up
-              </Link>
+              <Text as="span" color="fill-brand" fontWeight="text.alternative">
+                <Link href="/register">Sign up</Link>
+              </Text>
             </Text>
           </VStack>
         </Box>

@@ -24,7 +24,7 @@ export function TodoItem({todo, onToggle, onDelete}: TodoItemProps) {
         <Box pt="1px">
           <Checkbox checked={todo.completed} onChange={() => onToggle(todo)} />
         </Box>
-        <Box>
+        <Box cursor="pointer" onClick={() => router.push(`/todos/${todo.id}`)}>
           <Text
             fontSize="text.base"
             fontWeight="text.alternative"
@@ -60,12 +60,14 @@ export function TodoItem({todo, onToggle, onDelete}: TodoItemProps) {
         <Portal>
           <Menu.Positioner>
             <Menu.Content minW="160px" borderRadius="xl">
-              <Menu.Item value="edit" onClick={() => router.push(`/todos/${todo.id}/edit`)}>
-                <Box display="flex" alignItems="center" gap="2">
-                  <IconEdit width={16} height={16} />
-                  Edit
-                </Box>
-              </Menu.Item>
+              {!todo.completed && (
+                <Menu.Item value="edit" onClick={() => router.push(`/todos/${todo.id}/edit`)}>
+                  <Box display="flex" alignItems="center" gap="2">
+                    <IconEdit width={16} height={16} />
+                    Edit
+                  </Box>
+                </Menu.Item>
+              )}
               <Menu.Item value="delete" color="text-danger" onClick={() => onDelete(todo.id)}>
                 <Box display="flex" alignItems="center" gap="2">
                   <IconDelete width={16} height={16} />
