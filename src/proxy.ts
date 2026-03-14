@@ -4,7 +4,7 @@ const PUBLIC_ROUTES = ['/', '/login', '/register'];
 const DEFAULT_AUTHENTICATED_ROUTE = '/todos';
 const DEFAULT_UNAUTHENTICATED_ROUTE = '/login';
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const token = request.cookies.get('token')?.value;
   const {pathname} = request.nextUrl;
 

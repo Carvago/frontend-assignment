@@ -6,6 +6,7 @@ import {useRouter} from 'next/navigation';
 
 import {Button} from '@/components/Button';
 import {Checkbox} from '@/components/Checkbox';
+import {ConfirmDialog} from '@/components/ConfirmDialog';
 import {Header} from '@/components/Header';
 import {getTodo, deleteTodo, completeTodo, incompleteTodo} from '@/api/todos';
 import {formatDate} from '@/utils/formatDate';
@@ -22,6 +23,9 @@ export function TodoDetailPage({id}: TodoDetailPageProps) {
   const router = useRouter();
   const [todo, setTodo] = useState<Todo | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [isToggling, setIsToggling] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
 
   useEffect(() => {
     getTodo(id)
@@ -32,15 +36,25 @@ export function TodoDetailPage({id}: TodoDetailPageProps) {
 
   const handleToggleComplete = async () => {
     if (!todo) return;
-    const action = todo.completed ? incompleteTodo : completeTodo;
-    await action(todo.id);
-    setTodo(prev => prev ? {...prev, completed: !prev.completed} : prev);
+    setIsToggling(true);
+    try {
+      const action = todo.completed ? incompleteTodo : completeTodo;
+      await action(todo.id);
+      setTodo(prev => prev ? {...prev, completed: !prev.completed} : prev);
+    } finally {
+      setIsToggling(false);
+    }
   };
 
   const handleDelete = async () => {
     if (!todo) return;
-    await deleteTodo(todo.id);
-    router.push('/todos');
+    setIsDeleting(true);
+    try {
+      await deleteTodo(todo.id);
+      router.push('/todos');
+    } finally {
+      setIsDeleting(false);
+    }
   };
 
   if (isLoading) {
@@ -57,6 +71,8 @@ export function TodoDetailPage({id}: TodoDetailPageProps) {
   }
 
   if (!todo) return null;
+
+  const isBusy = isDeleting || isToggling;
 
   return (
     <>
@@ -75,7 +91,7 @@ export function TodoDetailPage({id}: TodoDetailPageProps) {
 
         <Box display="flex" alignItems="flex-start" gap="3" mb="6">
           <Box pt="1px">
-            <Checkbox checked={todo.completed} onChange={handleToggleComplete} />
+            <Checkbox checked={todo.completed} onChange={handleToggleComplete} disabled={isBusy} />
           </Box>
           <Box>
             <Text
@@ -106,7 +122,12 @@ export function TodoDetailPage({id}: TodoDetailPageProps) {
           justifyContent="space-between"
           gap="3"
         >
-          <Button variant="subtle" width={{base: '100%', md: 'auto'}} onClick={handleDelete}>
+          <Button
+            variant="subtle"
+            width={{base: '100%', md: 'auto'}}
+            disabled={isBusy}
+            onClick={() => setShowConfirm(true)}
+          >
             <Box display="flex" alignItems="center" gap="2">
               <IconDelete width={16} height={16} />
               Delete
@@ -116,6 +137,7 @@ export function TodoDetailPage({id}: TodoDetailPageProps) {
             <Button
               variant="solid"
               width={{base: '100%', md: 'auto'}}
+              disabled={isBusy}
               onClick={() => router.push(`/todos/${todo.id}/edit`)}
             >
               <Box display="flex" alignItems="center" gap="2">
@@ -126,6 +148,16 @@ export function TodoDetailPage({id}: TodoDetailPageProps) {
           )}
         </Box>
       </Box>
+
+      <ConfirmDialog
+        open={showConfirm}
+        title="Delete task"
+        description="Are you sure you want to delete this task? This action cannot be undone."
+        confirmLabel="Delete"
+        onConfirm={handleDelete}
+        onCancel={() => setShowConfirm(false)}
+        isLoading={isDeleting}
+      />
     </>
   );
 }
