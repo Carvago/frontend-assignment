@@ -1,25 +1,14 @@
 'use client';
 
 import {Box, Text} from '@chakra-ui/react';
-import {useEffect, useState} from 'react';
-import {getCurrentUser} from '@/api/user';
-import type {CurrentUser} from '@/types';
+
+import {useUser} from '@/context/UserContext';
 
 export function Header() {
-  const [user, setUser] = useState<CurrentUser | null>(null);
-
-  useEffect(() => {
-    getCurrentUser().then(setUser).catch(() => null);
-  }, []);
+  const {user} = useUser();
 
   return (
-    <Box
-      as="header"
-      display="flex"
-      alignItems="center"
-      justifyContent="space-between"
-      py="4"
-    >
+    <Box as="header" display="flex" alignItems="center" justifyContent="space-between" py="4">
       <Box display="flex" alignItems="center" gap="2">
         <img src="/logo.svg" alt="Zentask logo" width={36} />
         <Text fontSize="heading.3" fontWeight="heading.2" color="text-primary">

@@ -14,7 +14,15 @@ export function Checkbox({checked = false, onChange, disabled}: CheckboxProps) {
       pointerEvents={disabled ? 'none' : 'auto'}
       {...(checked ? checkboxChecked : checkboxUnchecked)}
     >
-      {checked && <img src="/icons/icon-check.svg" alt="checked" width={14} height={14} />}
+      {checked && (
+        <img
+          src="/icons/icon-check.svg"
+          alt="checked"
+          width={16}
+          height={16}
+          style={{filter: 'brightness(0) invert(1)'}}
+        />
+      )}
     </Box>
   );
 }
