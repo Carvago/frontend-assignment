@@ -1,3 +1,5 @@
-export default function RegisterPage() {
-  return <div>Register page</div>;
+import {RegisterPage} from '@/pages/RegisterPage';
+
+export default function Register() {
+  return <RegisterPage />;
 }
