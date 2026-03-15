@@ -10,7 +10,6 @@ import {Textarea} from '@/components/ui/Input';
 import {Header} from '@/components/layout/Header';
 import {createTodo} from '@/api/todos';
 import {todoSchema} from '@/validation/todoSchema';
-import type {TodoFormErrors} from '@/validation/todoSchema';
 import {getValidationErrors} from '@/utils/getValidationErrors';
 import {useTranslation} from 'react-i18next';
 import IconBackwards from '@icons/icon-backwards.svg';
@@ -28,7 +27,7 @@ export function NewTodoPage() {
   const {t} = useTranslation();
 
   const [fields, setFields] = useState<FormFields>(initialFields);
-  const [errors, setErrors] = useState<TodoFormErrors>({});
+  const [errors, setErrors] = useState<Partial<FormFields>>({});
   const [isLoading, setIsLoading] = useState(false);
 
   const setField = (key: keyof FormFields) => (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -39,7 +38,7 @@ export function NewTodoPage() {
     e.preventDefault();
     setErrors({});
 
-    const fieldErrors = await getValidationErrors<TodoFormErrors>(todoSchema(t), fields);
+    const fieldErrors = await getValidationErrors<Partial<FormFields>>(todoSchema(t), fields);
     if (fieldErrors) {
       setErrors(fieldErrors);
       return;

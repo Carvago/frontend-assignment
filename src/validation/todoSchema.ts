@@ -5,7 +5,3 @@ export const todoSchema = (t: TFunction) => object({
   title: string().required(t('validation.required.taskName')),
   description: string().optional(),
 });
-
-export type TodoFormErrors = {
-  title?: string;
-};

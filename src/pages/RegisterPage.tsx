@@ -20,19 +20,13 @@ type FormFields = {
   confirmPassword: string;
 };
 
-type FormErrors = {
-  username?: string;
-  password?: string;
-  confirmPassword?: string;
-};
-
 const initialFields: FormFields = {username: '', password: '', confirmPassword: ''};
 
 export function RegisterPage() {
   const router = useRouter();
   const {t} = useTranslation();
   const [fields, setFields] = useState<FormFields>(initialFields);
-  const [errors, setErrors] = useState<FormErrors>({});
+  const [errors, setErrors] = useState<Partial<FormFields>>({});
   const [isLoading, setIsLoading] = useState(false);
 
   const setField = (key: keyof FormFields) => (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -43,7 +37,7 @@ export function RegisterPage() {
     e.preventDefault();
     setErrors({});
 
-    const fieldErrors = await getValidationErrors<FormErrors>(registerSchema(t), fields);
+    const fieldErrors = await getValidationErrors<Partial<FormFields>>(registerSchema(t), fields);
     if (fieldErrors) {
       setErrors(fieldErrors);
       return;

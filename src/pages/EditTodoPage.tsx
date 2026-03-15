@@ -10,7 +10,6 @@ import {Textarea} from '@/components/ui/Input';
 import {Header} from '@/components/layout/Header';
 import {getTodo, updateTodo} from '@/api/todos';
 import {todoSchema} from '@/validation/todoSchema';
-import type {TodoFormErrors} from '@/validation/todoSchema';
 import {getValidationErrors} from '@/utils/getValidationErrors';
 import {useTranslation} from 'react-i18next';
 import IconBackwards from '@icons/icon-backwards.svg';
@@ -31,7 +30,7 @@ export function EditTodoPage({id}: EditTodoPageProps) {
   const {t} = useTranslation();
   const [todo, setTodo] = useState<Todo | null>(null);
   const [fields, setFields] = useState<FormFields>({title: '', description: ''});
-  const [errors, setErrors] = useState<TodoFormErrors>({});
+  const [errors, setErrors] = useState<Partial<FormFields>>({});
   const [isLoading, setIsLoading] = useState(false);
 
   const setField = (key: keyof FormFields) => (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -51,7 +50,7 @@ export function EditTodoPage({id}: EditTodoPageProps) {
     e.preventDefault();
     setErrors({});
 
-    const fieldErrors = await getValidationErrors<TodoFormErrors>(todoSchema(t), fields);
+    const fieldErrors = await getValidationErrors<Partial<FormFields>>(todoSchema(t), fields);
     if (fieldErrors) {
       setErrors(fieldErrors);
       return;

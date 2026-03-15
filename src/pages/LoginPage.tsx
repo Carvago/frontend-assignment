@@ -19,18 +19,13 @@ type FormFields = {
   password: string;
 };
 
-type FormErrors = {
-  username?: string;
-  password?: string;
-};
-
 const initialFields: FormFields = {username: '', password: ''};
 
 export function LoginPage() {
   const router = useRouter();
   const {t} = useTranslation();
   const [fields, setFields] = useState<FormFields>(initialFields);
-  const [errors, setErrors] = useState<FormErrors>({});
+  const [errors, setErrors] = useState<Partial<FormFields>>({});
   const [isLoading, setIsLoading] = useState(false);
 
   const setField =
@@ -42,7 +37,7 @@ export function LoginPage() {
     e.preventDefault();
     setErrors({});
 
-    const fieldErrors = await getValidationErrors<FormErrors>(loginSchema(t), fields);
+    const fieldErrors = await getValidationErrors<Partial<FormFields>>(loginSchema(t), fields);
     if (fieldErrors) {
       setErrors(fieldErrors);
       return;
