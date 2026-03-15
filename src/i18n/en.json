@@ -64,5 +64,9 @@
   "validation.required.taskName": "Task name is required",
   "validation.min.username": "Username must be at least 3 characters",
   "validation.min.password": "Password must be at least 6 characters",
-  "validation.passwordMatch": "Passwords do not match"
+  "validation.passwordMatch": "Passwords do not match",
+
+  "notFound.title": "Page not found",
+  "notFound.description": "The page you are looking for doesn't exist or has been moved.",
+  "notFound.button": "Go to my todos"
 }

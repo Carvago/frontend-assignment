@@ -64,5 +64,9 @@
   "validation.required.taskName": "Název úkolu je povinný",
   "validation.min.username": "Uživatelské jméno musí mít alespoň 3 znaky",
   "validation.min.password": "Heslo musí mít alespoň 6 znaků",
-  "validation.passwordMatch": "Hesla se neshodují"
+  "validation.passwordMatch": "Hesla se neshodují",
+
+  "notFound.title": "Stránka nenalezena",
+  "notFound.description": "Stránka, kterou hledáte, neexistuje nebo byla přesunuta.",
+  "notFound.button": "Přejít na mé úkoly"
 }

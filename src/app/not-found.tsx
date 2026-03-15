@@ -1,8 +1,12 @@
+'use client';
+
 import {Box, Text} from '@chakra-ui/react';
 import Link from 'next/link';
+import {useTranslation} from 'react-i18next';
 import {Button} from '@/components/ui/Button';
 
 export default function NotFound() {
+  const {t} = useTranslation();
   return (
     <Box
       minH="100vh"
@@ -38,14 +42,14 @@ export default function NotFound() {
           404
         </Text>
         <Text fontSize="heading.2" fontWeight="heading.2" color="text-primary">
-          Page not found
+          {t('notFound.title')}
         </Text>
         <Text fontSize="text.base" color="text-secondary">
-          The page you are looking for doesn't exist or has been moved.
+          {t('notFound.description')}
         </Text>
 
         <Link href="/todos">
-          <Button variant="solid">Go to my todos</Button>
+          <Button variant="solid">{t('notFound.button')}</Button>
         </Link>
       </Box>
     </Box>
