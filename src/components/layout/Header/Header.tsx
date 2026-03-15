@@ -1,6 +1,6 @@
 'use client';
 
-import {Box, Menu, Portal, Text} from '@chakra-ui/react';
+import {Avatar, Box, Menu, Portal, Text} from '@chakra-ui/react';
 import {useRouter} from 'next/navigation';
 
 import {clearTokens} from '@/api/auth';
@@ -38,7 +38,15 @@ export function Header() {
               _hover={{bg: 'gray.100'}}
               cursor="pointer"
             >
-              <Text fontSize="text.base" fontWeight="text.alternative" color="text-primary">
+              <Avatar.Root size="sm" colorPalette="blue">
+                <Avatar.Fallback name={user.username} />
+              </Avatar.Root>
+              <Text
+                display={{base: 'none', md: 'block'}}
+                fontSize="text.base"
+                fontWeight="text.alternative"
+                color="text-primary"
+              >
                 {user.username}
               </Text>
             </Box>
