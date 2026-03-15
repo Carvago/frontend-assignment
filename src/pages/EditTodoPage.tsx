@@ -4,10 +4,10 @@ import {Box, Text} from '@chakra-ui/react';
 import {useEffect, useState, type ChangeEvent, type FormEvent} from 'react';
 import {useRouter} from 'next/navigation';
 
-import {Button} from '@/components/Button';
-import {Input} from '@/components/Input';
-import {Textarea} from '@/components/Input';
-import {Header} from '@/components/Header';
+import {Button} from '@/components/ui/Button';
+import {Input} from '@/components/ui/Input';
+import {Textarea} from '@/components/ui/Input';
+import {Header} from '@/components/layout/Header';
 import {getTodo, updateTodo} from '@/api/todos';
 import {todoSchema} from '@/validation/todoSchema';
 import type {TodoFormErrors} from '@/validation/todoSchema';

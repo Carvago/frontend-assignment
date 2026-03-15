@@ -4,8 +4,8 @@ import {Box, Menu, Portal, Text} from '@chakra-ui/react';
 import {useState} from 'react';
 import {useRouter} from 'next/navigation';
 
-import {Checkbox} from '@/components/Checkbox';
-import {ConfirmDialog} from '@/components/ConfirmDialog';
+import {Checkbox} from '@/components/ui/Checkbox';
+import {ConfirmDialog} from '@/components/ui/ConfirmDialog';
 import IconMore from '@icons/icon-more.svg';
 import IconEdit from '@icons/icon-edit.svg';
 import IconDelete from '@icons/icon-delete.svg';

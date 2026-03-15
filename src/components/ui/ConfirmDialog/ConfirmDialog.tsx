@@ -2,7 +2,7 @@
 
 import {Box, Dialog, Portal, Text} from '@chakra-ui/react';
 
-import {Button} from '@/components/Button';
+import {Button} from '@/components/ui/Button';
 
 type ConfirmDialogProps = {
   open: boolean;

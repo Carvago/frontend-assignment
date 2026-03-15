@@ -4,10 +4,10 @@ import {Box, Separator, Spinner, Text} from '@chakra-ui/react';
 import {useEffect, useState} from 'react';
 import {useRouter} from 'next/navigation';
 
-import {Button} from '@/components/Button';
-import {Checkbox} from '@/components/Checkbox';
-import {ConfirmDialog} from '@/components/ConfirmDialog';
-import {Header} from '@/components/Header';
+import {Button} from '@/components/ui/Button';
+import {Checkbox} from '@/components/ui/Checkbox';
+import {ConfirmDialog} from '@/components/ui/ConfirmDialog';
+import {Header} from '@/components/layout/Header';
 import {getTodo, deleteTodo, completeTodo, incompleteTodo} from '@/api/todos';
 import {formatDate} from '@/utils/formatDate';
 import IconBackwards from '@icons/icon-backwards.svg';

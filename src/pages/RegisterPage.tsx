@@ -5,9 +5,9 @@ import {useState, type ChangeEvent, type FormEvent} from 'react';
 import {useRouter} from 'next/navigation';
 import Link from 'next/link';
 
-import {Button} from '@components/Button';
-import {Input} from '@components/Input';
-import {PasswordInput} from '@components/Input';
+import {Button} from '@/components/ui/Button';
+import {Input} from '@/components/ui/Input';
+import {PasswordInput} from '@/components/ui/Input';
 import IconForward from '@icons/icon-foward.svg';
 import {register} from '@/api/auth';
 import {registerSchema} from '@/validation/registerSchema';

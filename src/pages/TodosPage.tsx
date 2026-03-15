@@ -3,10 +3,10 @@
 import {Box, Separator, Spinner, Text} from '@chakra-ui/react';
 import {useRouter} from 'next/navigation';
 
-import {Button} from '@/components/Button';
-import {Header} from '@/components/Header';
-import {TodoEmptyState} from '@/components/TodoEmptyState';
-import {TodoItem} from '@/components/TodoItem';
+import {Button} from '@/components/ui/Button';
+import {Header} from '@/components/layout/Header';
+import {TodoEmptyState} from '@/components/layout/TodoEmptyState';
+import {TodoItem} from '@/components/layout/TodoItem';
 import {useTodos} from '@/hooks/useTodos';
 import {useUser} from '@/context/UserContext';
 import {useCurrentDate} from '@/hooks/useCurrentDate';
