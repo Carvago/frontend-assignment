@@ -1,9 +1,8 @@
 'use client';
 
-import {Box, Text} from '@chakra-ui/react';
+import {Box, Menu, Portal, Text} from '@chakra-ui/react';
 import {useRouter} from 'next/navigation';
 
-import {Button} from '@/components/Button';
 import {clearTokens} from '@/api/auth';
 import {useUser} from '@/context/UserContext';
 
@@ -26,14 +25,34 @@ export function Header() {
       </Box>
 
       {user && (
-        <Box display="flex" alignItems="center" gap="3">
-          <Text fontSize="text.base" fontWeight="text.alternative" color="text-primary">
-            {user.username}
-          </Text>
-          <Button variant="subtle" onClick={handleLogout}>
-            Log out
-          </Button>
-        </Box>
+        <Menu.Root>
+          <Menu.Trigger asChild>
+            <Box
+              as="button"
+              display="flex"
+              alignItems="center"
+              gap="2"
+              px="3"
+              py="2"
+              borderRadius="xl"
+              _hover={{bg: 'gray.100'}}
+              cursor="pointer"
+            >
+              <Text fontSize="text.base" fontWeight="text.alternative" color="text-primary">
+                {user.username}
+              </Text>
+            </Box>
+          </Menu.Trigger>
+          <Portal>
+            <Menu.Positioner>
+              <Menu.Content minW="160px" borderRadius="xl">
+                <Menu.Item value="logout" color="text-danger" onClick={handleLogout}>
+                  Log out
+                </Menu.Item>
+              </Menu.Content>
+            </Menu.Positioner>
+          </Portal>
+        </Menu.Root>
       )}
     </Box>
   );
