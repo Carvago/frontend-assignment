@@ -6,13 +6,21 @@ import {ReactNode} from 'react';
 import theme from '@/theme';
 import {ColorModeProvider} from './color-mode';
 import {Toaster} from './toaster';
+import {I18nProvider} from './I18nProvider';
 
-export function Provider({children}: {children: ReactNode}) {
+type Props = {
+  children: ReactNode;
+  initialLocale: string;
+};
+
+export function Provider({children, initialLocale}: Props) {
   return (
     <ChakraProvider value={theme}>
       <ColorModeProvider>
-        {children}
-        <Toaster />
+        <I18nProvider initialLocale={initialLocale}>
+          {children}
+          <Toaster />
+        </I18nProvider>
       </ColorModeProvider>
     </ChakraProvider>
   );

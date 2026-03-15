@@ -1,4 +1,5 @@
 import type {Metadata} from 'next';
+import {cookies} from 'next/headers';
 import {Provider} from '@/components/ui/provider';
 import {ReactNode} from 'react';
 
@@ -7,11 +8,17 @@ export const metadata: Metadata = {
   description: 'Assignment in React.js for developers who want to join our team.',
 };
 
-export default function RootLayout({children}: {children: ReactNode}) {
+const SUPPORTED_LOCALES = ['en', 'cs'];
+
+export default async function RootLayout({children}: {children: ReactNode}) {
+  const cookieStore = await cookies();
+  const cookieLocale = cookieStore.get('i18next')?.value ?? '';
+  const initialLocale = SUPPORTED_LOCALES.includes(cookieLocale) ? cookieLocale : 'en';
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={initialLocale} suppressHydrationWarning>
       <body suppressHydrationWarning>
-        <Provider>{children}</Provider>
+        <Provider initialLocale={initialLocale}>{children}</Provider>
       </body>
     </html>
   );

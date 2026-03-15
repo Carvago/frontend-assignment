@@ -3,17 +3,28 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import {initReactI18next} from 'react-i18next';
 
 import enTranslations from './en.json';
+import csTranslations from './cs.json';
 
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     fallbackLng: 'en',
+    supportedLngs: ['en', 'cs'],
     defaultNS: 'translation',
     resources: {
       en: {
         translation: enTranslations,
       },
+      cs: {
+        translation: csTranslations,
+      },
+    },
+    detection: {
+      order: ['cookie', 'navigator'],
+      caches: ['cookie'],
+      lookupCookie: 'i18next',
+      cookieMinutes: 60 * 24 * 365,
     },
     debug: false,
     keySeparator: false,

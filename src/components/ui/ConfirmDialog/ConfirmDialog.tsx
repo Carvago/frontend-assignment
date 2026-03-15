@@ -1,6 +1,7 @@
 'use client';
 
 import {Box, Dialog, Portal, Text} from '@chakra-ui/react';
+import {useTranslation} from 'react-i18next';
 
 import {Button} from '@/components/ui/Button';
 
@@ -18,11 +19,13 @@ export function ConfirmDialog({
   open,
   title,
   description,
-  confirmLabel = 'Confirm',
+  confirmLabel,
   onConfirm,
   onCancel,
   isLoading,
 }: ConfirmDialogProps) {
+  const {t} = useTranslation();
+
   return (
     <Dialog.Root open={open} onOpenChange={({open}) => !open && onCancel()} role="alertdialog">
       <Portal>
@@ -45,10 +48,10 @@ export function ConfirmDialog({
 
             <Box display="flex" justifyContent="flex-end" gap="3" mt="6">
               <Button variant="subtle" onClick={onCancel} disabled={isLoading}>
-                Cancel
+                {t('common.cancel')}
               </Button>
               <Button variant="solid" onClick={onConfirm} disabled={isLoading}>
-                {confirmLabel}
+                {confirmLabel ?? t('common.delete')}
               </Button>
             </Box>
           </Dialog.Content>

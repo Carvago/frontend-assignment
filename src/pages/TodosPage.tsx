@@ -10,15 +10,17 @@ import {TodoItem} from '@/components/layout/TodoItem';
 import {useTodos} from '@/hooks/useTodos';
 import {useUser} from '@/context/UserContext';
 import {useCurrentDate} from '@/hooks/useCurrentDate';
+import {useTranslation} from 'react-i18next';
 import IconAdd from '@icons/icon-add.svg';
 
 export function TodosPage() {
   const router = useRouter();
+  const {t} = useTranslation();
   const {user} = useUser();
   const {todos, isLoading, error, handleToggleComplete, handleDelete} = useTodos();
 
-  const activeTodos = todos.filter((t) => !t.completed);
-  const completedTodos = todos.filter((t) => t.completed);
+  const activeTodos = todos.filter((todo) => !todo.completed);
+  const completedTodos = todos.filter((todo) => todo.completed);
 
   const formattedDate = useCurrentDate();
 
@@ -36,7 +38,7 @@ export function TodosPage() {
         >
           <Box>
             <Text fontSize="heading.2" fontWeight="heading.1" color="text-primary">
-              Hello {user?.username ?? ''}!
+              {t('todos.hello', {name: user?.username ?? ''})}
             </Text>
             <Text fontSize="text.small" color="text-secondary" mt="1">
               {formattedDate}
@@ -48,7 +50,7 @@ export function TodosPage() {
             leftIcon={<IconAdd width={16} height={16} />}
             onClick={() => router.push('/todos/new')}
           >
-            Add task
+            {t('todos.addTask')}
           </Button>
         </Box>
 
@@ -71,7 +73,7 @@ export function TodosPage() {
             ) : (
               <Box>
                 <Text fontSize="text.base" fontWeight="text.alternative" color="text-primary" mb="2">
-                  To-do
+                  {t('todos.todo')}
                 </Text>
                 <Separator />
                 {activeTodos.map(todo => (
@@ -85,7 +87,7 @@ export function TodosPage() {
             {completedTodos.length > 0 && (
               <Box mt="6">
                 <Text fontSize="text.base" fontWeight="text.alternative" color="text-primary" mb="2">
-                  Completed
+                  {t('todos.completed')}
                 </Text>
                 <Separator />
                 {completedTodos.map(todo => (

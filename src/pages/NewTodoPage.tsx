@@ -12,6 +12,7 @@ import {createTodo} from '@/api/todos';
 import {todoSchema} from '@/validation/todoSchema';
 import type {TodoFormErrors} from '@/validation/todoSchema';
 import {getValidationErrors} from '@/utils/getValidationErrors';
+import {useTranslation} from 'react-i18next';
 import IconBackwards from '@icons/icon-backwards.svg';
 import IconCheck from '@icons/icon-check.svg';
 
@@ -24,6 +25,7 @@ const initialFields: FormFields = {title: '', description: ''};
 
 export function NewTodoPage() {
   const router = useRouter();
+  const {t} = useTranslation();
 
   const [fields, setFields] = useState<FormFields>(initialFields);
   const [errors, setErrors] = useState<TodoFormErrors>({});
@@ -37,7 +39,7 @@ export function NewTodoPage() {
     e.preventDefault();
     setErrors({});
 
-    const fieldErrors = await getValidationErrors<TodoFormErrors>(todoSchema, fields);
+    const fieldErrors = await getValidationErrors<TodoFormErrors>(todoSchema(t), fields);
     if (fieldErrors) {
       setErrors(fieldErrors);
       return;
@@ -61,14 +63,14 @@ export function NewTodoPage() {
             <IconBackwards width={16} height={16} />
           </Button>
           <Text fontSize="heading.2" fontWeight="heading.1" color="text-primary">
-            New task
+            {t('newTodo.title')}
           </Text>
         </Box>
 
         <form onSubmit={handleSubmit}>
           <Box display="flex" flexDirection="column" gap="4">
             <Input
-              label="Task name"
+              label={t('newTodo.taskName')}
               required
               name="title"
               value={fields.title}
@@ -76,7 +78,7 @@ export function NewTodoPage() {
               onChange={setField('title')}
             />
             <Textarea
-              label="Description (Optional)"
+              label={t('newTodo.description')}
               name="description"
               value={fields.description}
               onChange={setField('description')}
@@ -93,7 +95,7 @@ export function NewTodoPage() {
                 width={{base: '100%', md: 'auto'}}
                 onClick={() => router.back()}
               >
-                Discard
+                {t('newTodo.discard')}
               </Button>
               <Button
                 type="submit"
@@ -102,7 +104,7 @@ export function NewTodoPage() {
                 disabled={isLoading}
                 rightIcon={<IconCheck width={16} height={16} />}
               >
-                Create task
+                {t('newTodo.create')}
               </Button>
             </Box>
           </Box>

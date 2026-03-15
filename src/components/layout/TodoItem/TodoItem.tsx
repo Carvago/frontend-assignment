@@ -3,6 +3,7 @@
 import {Box, Menu, Portal, Text} from '@chakra-ui/react';
 import {useState} from 'react';
 import {useRouter} from 'next/navigation';
+import {useTranslation} from 'react-i18next';
 
 import {Checkbox} from '@/components/ui/Checkbox';
 import {ConfirmDialog} from '@/components/ui/ConfirmDialog';
@@ -19,6 +20,7 @@ type TodoItemProps = {
 
 export function TodoItem({todo, onToggle, onDelete}: TodoItemProps) {
   const router = useRouter();
+  const {t} = useTranslation();
   const [isToggling, setIsToggling] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
@@ -98,14 +100,14 @@ export function TodoItem({todo, onToggle, onDelete}: TodoItemProps) {
                   <Menu.Item value="edit" onClick={() => router.push(`/todos/${todo.id}/edit`)}>
                     <Box display="flex" alignItems="center" gap="2">
                       <IconEdit width={16} height={16} />
-                      Edit
+                      {t('todoItem.edit')}
                     </Box>
                   </Menu.Item>
                 )}
                 <Menu.Item value="delete" color="text-danger" onClick={() => setShowConfirm(true)}>
                   <Box display="flex" alignItems="center" gap="2">
                     <IconDelete width={16} height={16} />
-                    Delete
+                    {t('todoItem.delete')}
                   </Box>
                 </Menu.Item>
               </Menu.Content>
@@ -116,9 +118,9 @@ export function TodoItem({todo, onToggle, onDelete}: TodoItemProps) {
 
       <ConfirmDialog
         open={showConfirm}
-        title="Delete task"
-        description="Are you sure you want to delete this task? This action cannot be undone."
-        confirmLabel="Delete"
+        title={t('todoItem.confirmTitle')}
+        description={t('todoItem.confirmDescription')}
+        confirmLabel={t('todoItem.delete')}
         onConfirm={handleDelete}
         onCancel={() => setShowConfirm(false)}
         isLoading={isDeleting}

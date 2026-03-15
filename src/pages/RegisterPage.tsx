@@ -12,6 +12,7 @@ import IconForward from '@icons/icon-foward.svg';
 import {register} from '@/api/auth';
 import {registerSchema} from '@/validation/registerSchema';
 import {getValidationErrors} from '@/utils/getValidationErrors';
+import {useTranslation} from 'react-i18next';
 
 type FormFields = {
   username: string;
@@ -29,6 +30,7 @@ const initialFields: FormFields = {username: '', password: '', confirmPassword: 
 
 export function RegisterPage() {
   const router = useRouter();
+  const {t} = useTranslation();
   const [fields, setFields] = useState<FormFields>(initialFields);
   const [errors, setErrors] = useState<FormErrors>({});
   const [isLoading, setIsLoading] = useState(false);
@@ -41,7 +43,7 @@ export function RegisterPage() {
     e.preventDefault();
     setErrors({});
 
-    const fieldErrors = await getValidationErrors<FormErrors>(registerSchema, fields);
+    const fieldErrors = await getValidationErrors<FormErrors>(registerSchema(t), fields);
     if (fieldErrors) {
       setErrors(fieldErrors);
       return;
@@ -80,17 +82,17 @@ export function RegisterPage() {
           <VStack gap="6" align="stretch">
             <VStack gap="2" align="start">
               <Text fontSize="heading.2" fontWeight="heading.1" color="text-primary">
-                Create an account
+                {t('register.title')}
               </Text>
               <Text fontSize="text.base" fontWeight="text.base" color="text-secondary">
-                Join Zentask today! Fill in your details below to get started and take control of your tasks.
+                {t('register.subtitle')}
               </Text>
             </VStack>
 
             <form onSubmit={handleSubmit}>
               <VStack gap="4" align="stretch">
                 <Input
-                  label="Username"
+                  label={t('register.username')}
                   required
                   name="username"
                   value={fields.username}
@@ -98,7 +100,7 @@ export function RegisterPage() {
                   onChange={setField('username')}
                 />
                 <PasswordInput
-                  label="Password"
+                  label={t('register.password')}
                   required
                   name="password"
                   value={fields.password}
@@ -106,7 +108,7 @@ export function RegisterPage() {
                   onChange={setField('password')}
                 />
                 <PasswordInput
-                  label="Confirm password"
+                  label={t('register.confirmPassword')}
                   required
                   name="confirmPassword"
                   value={fields.confirmPassword}
@@ -120,15 +122,15 @@ export function RegisterPage() {
                   disabled={isLoading}
                   rightIcon={<IconForward width={16} height={16} />}
                 >
-                  {isLoading ? 'Signing up...' : 'Sign up'}
+                  {isLoading ? t('register.submitting') : t('register.submit')}
                 </Button>
               </VStack>
             </form>
 
             <Text fontSize="text.small" color="text-secondary" textAlign="center">
-              Already have an account?{' '}
+              {t('register.haveAccount')}{' '}
               <Text as="span" color="fill-brand" fontWeight="text.alternative">
-                <Link href="/login">Log in</Link>
+                <Link href="/login">{t('register.logIn')}</Link>
               </Text>
             </Text>
           </VStack>

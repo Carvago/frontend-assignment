@@ -2,6 +2,7 @@
 
 import {Avatar, Box, Menu, Portal, Text} from '@chakra-ui/react';
 import {useRouter} from 'next/navigation';
+import {useTranslation} from 'react-i18next';
 
 import {clearTokens} from '@/api/auth';
 import {useUser} from '@/context/UserContext';
@@ -9,10 +10,15 @@ import {useUser} from '@/context/UserContext';
 export function Header() {
   const {user} = useUser();
   const router = useRouter();
+  const {t, i18n} = useTranslation();
 
   const handleLogout = () => {
     clearTokens();
     router.push('/login');
+  };
+
+  const handleChangeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
   };
 
   return (
@@ -54,8 +60,14 @@ export function Header() {
           <Portal>
             <Menu.Positioner>
               <Menu.Content minW="160px" borderRadius="xl">
+                <Menu.Item value="lang-en" onClick={() => handleChangeLanguage('en')}>
+                  🇬🇧 English {i18n.language === 'en' && '✓'}
+                </Menu.Item>
+                <Menu.Item value="lang-cs" onClick={() => handleChangeLanguage('cs')}>
+                  🇨🇿 Čeština {i18n.language === 'cs' && '✓'}
+                </Menu.Item>
                 <Menu.Item value="logout" color="text-danger" onClick={handleLogout}>
-                  Log out
+                  {t('header.logout')}
                 </Menu.Item>
               </Menu.Content>
             </Menu.Positioner>

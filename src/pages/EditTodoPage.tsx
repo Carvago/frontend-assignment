@@ -12,6 +12,7 @@ import {getTodo, updateTodo} from '@/api/todos';
 import {todoSchema} from '@/validation/todoSchema';
 import type {TodoFormErrors} from '@/validation/todoSchema';
 import {getValidationErrors} from '@/utils/getValidationErrors';
+import {useTranslation} from 'react-i18next';
 import IconBackwards from '@icons/icon-backwards.svg';
 import IconCheck from '@icons/icon-check.svg';
 import type {Todo} from '@/types';
@@ -27,6 +28,7 @@ type FormFields = {
 
 export function EditTodoPage({id}: EditTodoPageProps) {
   const router = useRouter();
+  const {t} = useTranslation();
   const [todo, setTodo] = useState<Todo | null>(null);
   const [fields, setFields] = useState<FormFields>({title: '', description: ''});
   const [errors, setErrors] = useState<TodoFormErrors>({});
@@ -49,7 +51,7 @@ export function EditTodoPage({id}: EditTodoPageProps) {
     e.preventDefault();
     setErrors({});
 
-    const fieldErrors = await getValidationErrors<TodoFormErrors>(todoSchema, fields);
+    const fieldErrors = await getValidationErrors<TodoFormErrors>(todoSchema(t), fields);
     if (fieldErrors) {
       setErrors(fieldErrors);
       return;
@@ -80,7 +82,7 @@ export function EditTodoPage({id}: EditTodoPageProps) {
         <form onSubmit={handleSubmit}>
           <Box display="flex" flexDirection="column" gap="4">
             <Input
-              label="Task name"
+              label={t('editTodo.taskName')}
               required
               name="title"
               value={fields.title}
@@ -88,7 +90,7 @@ export function EditTodoPage({id}: EditTodoPageProps) {
               onChange={setField('title')}
             />
             <Textarea
-              label="Description (Optional)"
+              label={t('editTodo.description')}
               name="description"
               value={fields.description}
               onChange={setField('description')}
@@ -105,7 +107,7 @@ export function EditTodoPage({id}: EditTodoPageProps) {
                 width={{base: '100%', md: 'auto'}}
                 onClick={() => router.back()}
               >
-                Discard changes
+                {t('editTodo.discard')}
               </Button>
               <Button
                 type="submit"
@@ -114,7 +116,7 @@ export function EditTodoPage({id}: EditTodoPageProps) {
                 disabled={isLoading}
                 rightIcon={<IconCheck width={16} height={16} />}
               >
-                Save changes
+                {t('editTodo.save')}
               </Button>
             </Box>
           </Box>

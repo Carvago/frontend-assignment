@@ -1,0 +1,68 @@
+{
+  "app.title": "Carvago Frontend Zadání",
+  "app.description": "Zadání v React.js pro vývojáře, kteří se chtějí připojit k našemu týmu.",
+  "welcome.message": "Vítejte v Carvago Front-End Zadání",
+  "welcome.link": "zobrazit API dokumentaci",
+
+  "common.cancel": "Zrušit",
+  "common.delete": "Smazat",
+
+  "header.logout": "Odhlásit se",
+
+  "login.title": "Vítejte zpět!",
+  "login.subtitle": "Vítejte na našem zabezpečeném portálu! Pro přístup k plné funkcionalitě aplikace zadejte níže své přihlašovací údaje. Vaše soukromí je naší prioritou.",
+  "login.username": "Uživatelské jméno",
+  "login.password": "Heslo",
+  "login.submit": "Přihlásit se",
+  "login.submitting": "Přihlašování...",
+  "login.noAccount": "Nemáte účet?",
+  "login.signUp": "Registrovat se",
+
+  "register.title": "Vytvořit účet",
+  "register.subtitle": "Připojte se k Zentask ještě dnes! Vyplňte níže své údaje a začněte mít přehled nad svými úkoly.",
+  "register.fullName": "Celé jméno",
+  "register.username": "Uživatelské jméno",
+  "register.password": "Heslo",
+  "register.confirmPassword": "Potvrdit heslo",
+  "register.submit": "Registrovat se",
+  "register.submitting": "Registrace...",
+  "register.haveAccount": "Již máte účet?",
+  "register.logIn": "Přihlásit se",
+
+  "todos.hello": "Ahoj, {{name}}!",
+  "todos.addTask": "Přidat úkol",
+  "todos.todo": "K dokončení",
+  "todos.completed": "Dokončeno",
+
+  "todoEmpty.title": "Jste úžasní!",
+  "todoEmpty.subtitle": "Žádné další úkoly k dokončení.",
+
+  "newTodo.title": "Nový úkol",
+  "newTodo.taskName": "Název úkolu",
+  "newTodo.description": "Popis (volitelné)",
+  "newTodo.discard": "Zahodit",
+  "newTodo.create": "Vytvořit úkol",
+
+  "editTodo.taskName": "Název úkolu",
+  "editTodo.description": "Popis (volitelné)",
+  "editTodo.discard": "Zahodit změny",
+  "editTodo.save": "Uložit změny",
+
+  "todoDetail.delete": "Smazat",
+  "todoDetail.edit": "Upravit",
+  "todoDetail.confirmTitle": "Smazat úkol",
+  "todoDetail.confirmDescription": "Opravdu chcete smazat tento úkol? Tuto akci nelze vrátit zpět.",
+
+  "todoItem.edit": "Upravit",
+  "todoItem.delete": "Smazat",
+  "todoItem.confirmTitle": "Smazat úkol",
+  "todoItem.confirmDescription": "Opravdu chcete smazat tento úkol? Tuto akci nelze vrátit zpět.",
+
+  "validation.required.username": "Uživatelské jméno je povinné",
+  "validation.required.password": "Heslo je povinné",
+  "validation.required.confirmPassword": "Prosím potvrďte heslo",
+  "validation.required.taskName": "Název úkolu je povinný",
+  "validation.min.username": "Uživatelské jméno musí mít alespoň 3 znaky",
+  "validation.min.password": "Heslo musí mít alespoň 6 znaků",
+  "validation.passwordMatch": "Hesla se neshodují"
+}

@@ -10,6 +10,7 @@ import {ConfirmDialog} from '@/components/ui/ConfirmDialog';
 import {Header} from '@/components/layout/Header';
 import {getTodo, deleteTodo, completeTodo, incompleteTodo} from '@/api/todos';
 import {formatDate} from '@/utils/formatDate';
+import {useTranslation} from 'react-i18next';
 import IconBackwards from '@icons/icon-backwards.svg';
 import IconEdit from '@icons/icon-edit.svg';
 import IconDelete from '@icons/icon-delete.svg';
@@ -21,6 +22,7 @@ type TodoDetailPageProps = {
 
 export function TodoDetailPage({id}: TodoDetailPageProps) {
   const router = useRouter();
+  const {t} = useTranslation();
   const [todo, setTodo] = useState<Todo | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -130,7 +132,7 @@ export function TodoDetailPage({id}: TodoDetailPageProps) {
           >
             <Box display="flex" alignItems="center" gap="2">
               <IconDelete width={16} height={16} />
-              Delete
+              {t('todoDetail.delete')}
             </Box>
           </Button>
           {!todo.completed && (
@@ -142,7 +144,7 @@ export function TodoDetailPage({id}: TodoDetailPageProps) {
             >
               <Box display="flex" alignItems="center" gap="2">
                 <IconEdit width={16} height={16} />
-                Edit
+                {t('todoDetail.edit')}
               </Box>
             </Button>
           )}
@@ -151,9 +153,9 @@ export function TodoDetailPage({id}: TodoDetailPageProps) {
 
       <ConfirmDialog
         open={showConfirm}
-        title="Delete task"
-        description="Are you sure you want to delete this task? This action cannot be undone."
-        confirmLabel="Delete"
+        title={t('todoDetail.confirmTitle')}
+        description={t('todoDetail.confirmDescription')}
+        confirmLabel={t('todoDetail.delete')}
         onConfirm={handleDelete}
         onCancel={() => setShowConfirm(false)}
         isLoading={isDeleting}

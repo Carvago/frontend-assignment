@@ -2,5 +2,67 @@
   "app.title": "Carvago Frontend Assignment",
   "app.description": "Assignment in React.js for developers who want to join our team.",
   "welcome.message": "Welcome to Carvago Front-End Assignment",
-  "welcome.link": "see API docs"
+  "welcome.link": "see API docs",
+
+  "common.cancel": "Cancel",
+  "common.delete": "Delete",
+
+  "header.logout": "Log out",
+  "header.language": "Language",
+
+  "login.title": "It's good to have you back!",
+  "login.subtitle": "Welcome to our secure portal! To access the full functionality of our app, kindly provide your credentials below. Your privacy is our priority.",
+  "login.username": "Username",
+  "login.password": "Password",
+  "login.submit": "Log in",
+  "login.submitting": "Logging in...",
+  "login.noAccount": "Don't have an account?",
+  "login.signUp": "Sign up",
+
+  "register.title": "Create an account",
+  "register.subtitle": "Join Zentask today! Fill in your details below to get started and take control of your tasks.",
+  "register.username": "Username",
+  "register.password": "Password",
+  "register.confirmPassword": "Confirm password",
+  "register.submit": "Sign up",
+  "register.submitting": "Signing up...",
+  "register.haveAccount": "Already have an account?",
+  "register.logIn": "Log in",
+
+  "todos.hello": "Hello, {{name}}!",
+  "todos.addTask": "Add task",
+  "todos.todo": "To-do",
+  "todos.completed": "Completed",
+
+  "todoEmpty.title": "You are amazing!",
+  "todoEmpty.subtitle": "There is no more task to do.",
+
+  "newTodo.title": "New task",
+  "newTodo.taskName": "Task name",
+  "newTodo.description": "Description (Optional)",
+  "newTodo.discard": "Discard",
+  "newTodo.create": "Create task",
+
+  "editTodo.taskName": "Task name",
+  "editTodo.description": "Description (Optional)",
+  "editTodo.discard": "Discard changes",
+  "editTodo.save": "Save changes",
+
+  "todoDetail.delete": "Delete",
+  "todoDetail.edit": "Edit",
+  "todoDetail.confirmTitle": "Delete task",
+  "todoDetail.confirmDescription": "Are you sure you want to delete this task? This action cannot be undone.",
+
+  "todoItem.edit": "Edit",
+  "todoItem.delete": "Delete",
+  "todoItem.confirmTitle": "Delete task",
+  "todoItem.confirmDescription": "Are you sure you want to delete this task? This action cannot be undone.",
+
+  "validation.required.username": "Username is required",
+  "validation.required.password": "Password is required",
+  "validation.required.confirmPassword": "Please confirm your password",
+  "validation.required.taskName": "Task name is required",
+  "validation.min.username": "Username must be at least 3 characters",
+  "validation.min.password": "Password must be at least 6 characters",
+  "validation.passwordMatch": "Passwords do not match"
 }

@@ -1,7 +1,8 @@
 import {object, string} from 'yup';
+import type {TFunction} from 'i18next';
 
-export const todoSchema = object({
-  title: string().required('Task name is required'),
+export const todoSchema = (t: TFunction) => object({
+  title: string().required(t('validation.required.taskName')),
   description: string().optional(),
 });
 

@@ -1,6 +1,7 @@
 import {object, string} from 'yup';
+import type {TFunction} from 'i18next';
 
-export const loginSchema = object({
-  username: string().required('Username is required'),
-  password: string().required('Password is required'),
+export const loginSchema = (t: TFunction) => object({
+  username: string().required(t('validation.required.username')),
+  password: string().required(t('validation.required.password')),
 });

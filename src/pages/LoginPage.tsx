@@ -12,6 +12,7 @@ import IconForward from '@icons/icon-foward.svg';
 import {login} from '@/api/auth';
 import {loginSchema} from '@/validation/loginSchema';
 import {getValidationErrors} from '@/utils/getValidationErrors';
+import {useTranslation} from 'react-i18next';
 
 type FormFields = {
   username: string;
@@ -27,6 +28,7 @@ const initialFields: FormFields = {username: '', password: ''};
 
 export function LoginPage() {
   const router = useRouter();
+  const {t} = useTranslation();
   const [fields, setFields] = useState<FormFields>(initialFields);
   const [errors, setErrors] = useState<FormErrors>({});
   const [isLoading, setIsLoading] = useState(false);
@@ -40,7 +42,7 @@ export function LoginPage() {
     e.preventDefault();
     setErrors({});
 
-    const fieldErrors = await getValidationErrors<FormErrors>(loginSchema, fields);
+    const fieldErrors = await getValidationErrors<FormErrors>(loginSchema(t), fields);
     if (fieldErrors) {
       setErrors(fieldErrors);
       return;
@@ -85,18 +87,17 @@ export function LoginPage() {
           <VStack gap="6" align="stretch">
             <VStack gap="2" align="start">
               <Text fontSize="heading.2" fontWeight="heading.1" color="text-primary">
-                It's good to have you back!
+                {t('login.title')}
               </Text>
               <Text fontSize="text.base" fontWeight="text.base" color="text-secondary">
-                Welcome to our secure portal! To access the full functionality of our app, kindly
-                provide your credentials below. Your privacy is our priority.
+                {t('login.subtitle')}
               </Text>
             </VStack>
 
             <form onSubmit={handleSubmit}>
               <VStack gap="4" align="stretch">
                 <Input
-                  label="Username"
+                  label={t('login.username')}
                   required
                   name="username"
                   value={fields.username}
@@ -104,7 +105,7 @@ export function LoginPage() {
                   onChange={setField('username')}
                 />
                 <PasswordInput
-                  label="Password"
+                  label={t('login.password')}
                   required
                   name="password"
                   value={fields.password}
@@ -118,15 +119,15 @@ export function LoginPage() {
                   disabled={isLoading}
                   rightIcon={<IconForward width={16} height={16} />}
                 >
-                  {isLoading ? 'Logging in...' : 'Log in'}
+                  {isLoading ? t('login.submitting') : t('login.submit')}
                 </Button>
               </VStack>
             </form>
 
             <Text fontSize="text.small" color="text-secondary" textAlign="center">
-              Don't have an account?{' '}
+              {t('login.noAccount')}{' '}
               <Text as="span" color="fill-brand" fontWeight="text.alternative">
-                <Link href="/register">Sign up</Link>
+                <Link href="/register">{t('login.signUp')}</Link>
               </Text>
             </Text>
           </VStack>
