@@ -1,7 +1,7 @@
 'use client';
 
 import {Box, Text} from '@chakra-ui/react';
-import {useEffect, useState, type ChangeEvent, type FormEvent} from 'react';
+import {useEffect, useState, type FormEvent} from 'react';
 import {useRouter} from 'next/navigation';
 
 import {Button} from '@/components/ui/Button';
@@ -12,6 +12,7 @@ import {getTodo, updateTodo} from '@/api/todos';
 import {todoSchema} from '@/validation/todoSchema';
 import {getValidationErrors} from '@/utils/getValidationErrors';
 import {useTranslation} from 'react-i18next';
+import {useForm} from '@/hooks/useForm';
 import IconBackwards from '@icons/icon-backwards.svg';
 import IconCheck from '@icons/icon-check.svg';
 import type {Todo} from '@/types';
@@ -29,13 +30,7 @@ export function EditTodoPage({id}: EditTodoPageProps) {
   const router = useRouter();
   const {t} = useTranslation();
   const [todo, setTodo] = useState<Todo | null>(null);
-  const [fields, setFields] = useState<FormFields>({title: '', description: ''});
-  const [errors, setErrors] = useState<Partial<FormFields>>({});
-  const [isLoading, setIsLoading] = useState(false);
-
-  const setField = (key: keyof FormFields) => (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFields(prev => ({...prev, [key]: e.target.value}));
-  };
+  const {fields, setFields, errors, setErrors, isLoading, setIsLoading, setField} = useForm<FormFields>({title: '', description: ''});
 
   useEffect(() => {
     getTodo(id)

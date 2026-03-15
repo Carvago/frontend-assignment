@@ -1,7 +1,7 @@
 'use client';
 
 import {Box, Text} from '@chakra-ui/react';
-import {useState, type ChangeEvent, type FormEvent} from 'react';
+import {type FormEvent} from 'react';
 import {useRouter} from 'next/navigation';
 
 import {Button} from '@/components/ui/Button';
@@ -12,6 +12,7 @@ import {createTodo} from '@/api/todos';
 import {todoSchema} from '@/validation/todoSchema';
 import {getValidationErrors} from '@/utils/getValidationErrors';
 import {useTranslation} from 'react-i18next';
+import {useForm} from '@/hooks/useForm';
 import IconBackwards from '@icons/icon-backwards.svg';
 import IconCheck from '@icons/icon-check.svg';
 
@@ -25,14 +26,7 @@ const initialFields: FormFields = {title: '', description: ''};
 export function NewTodoPage() {
   const router = useRouter();
   const {t} = useTranslation();
-
-  const [fields, setFields] = useState<FormFields>(initialFields);
-  const [errors, setErrors] = useState<Partial<FormFields>>({});
-  const [isLoading, setIsLoading] = useState(false);
-
-  const setField = (key: keyof FormFields) => (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFields(prev => ({...prev, [key]: e.target.value}));
-  };
+  const {fields, errors, setErrors, isLoading, setIsLoading, setField} = useForm(initialFields);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();

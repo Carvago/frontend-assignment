@@ -1,7 +1,7 @@
 'use client';
 
 import {Box, Text, VStack} from '@chakra-ui/react';
-import {useState, type ChangeEvent, type FormEvent} from 'react';
+import {type FormEvent} from 'react';
 import {useRouter} from 'next/navigation';
 import Link from 'next/link';
 
@@ -13,6 +13,7 @@ import {login} from '@/api/auth';
 import {loginSchema} from '@/validation/loginSchema';
 import {getValidationErrors} from '@/utils/getValidationErrors';
 import {useTranslation} from 'react-i18next';
+import {useForm} from '@/hooks/useForm';
 
 type FormFields = {
   username: string;
@@ -24,14 +25,7 @@ const initialFields: FormFields = {username: '', password: ''};
 export function LoginPage() {
   const router = useRouter();
   const {t} = useTranslation();
-  const [fields, setFields] = useState<FormFields>(initialFields);
-  const [errors, setErrors] = useState<Partial<FormFields>>({});
-  const [isLoading, setIsLoading] = useState(false);
-
-  const setField =
-    (key: keyof FormFields) => (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      setFields((prev) => ({...prev, [key]: e.target.value}));
-    };
+  const {fields, errors, setErrors, isLoading, setIsLoading, setField, reset} = useForm(initialFields);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -48,7 +42,7 @@ export function LoginPage() {
       await login(fields);
       router.push('/todos');
     } catch {
-      setFields(initialFields);
+      reset();
     } finally {
       setIsLoading(false);
     }
