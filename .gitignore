@@ -35,6 +35,10 @@ vscode
 # Claude Code
 .claude/
 
+# Environment
+.env.local
+.env*.local
+
 # misc
 /.sass-cache
 /connect.lock
