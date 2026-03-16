@@ -1,6 +1,6 @@
 'use client';
 
-import {Box, Separator, Spinner, Text} from '@chakra-ui/react';
+import {Box, Separator, Text} from '@chakra-ui/react';
 import {useEffect, useState} from 'react';
 import {useRouter} from 'next/navigation';
 
@@ -10,6 +10,7 @@ import {ConfirmDialog} from '@/components/ui/ConfirmDialog';
 import {Header} from '@/components/layout/Header';
 import {getTodo, deleteTodo, completeTodo, incompleteTodo} from '@/api/todos';
 import {formatDate} from '@/utils/formatDate';
+import {Spinner} from '@/components/ui/Spinner';
 import {useTranslation} from 'react-i18next';
 import IconBackwards from '@icons/icon-backwards.svg';
 import IconEdit from '@icons/icon-edit.svg';
@@ -22,7 +23,7 @@ type TodoDetailPageProps = {
 
 export function TodoDetailPage({id}: TodoDetailPageProps) {
   const router = useRouter();
-  const {t} = useTranslation();
+  const {t, i18n} = useTranslation();
   const [todo, setTodo] = useState<Todo | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -65,7 +66,7 @@ export function TodoDetailPage({id}: TodoDetailPageProps) {
         <Header />
         <Box bg="fill-white" borderRadius="16px" p="6" boxShadow="0px 4px 24px rgba(0, 17, 65, 0.08)">
           <Box py="10" display="flex" justifyContent="center">
-            <Spinner size="lg" color="fill-brand" />
+            <Spinner size={80} />
           </Box>
         </Box>
       </>
@@ -105,7 +106,7 @@ export function TodoDetailPage({id}: TodoDetailPageProps) {
               {todo.title}
             </Text>
             <Text fontSize="text.small" color="text-secondary" mt="1">
-              {formatDate(new Date(todo.createdAt))}
+              {formatDate(new Date(todo.createdAt), i18n.language)}
             </Text>
           </Box>
         </Box>

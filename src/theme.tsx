@@ -31,6 +31,12 @@ const theme = createSystem(defaultConfig, {
     },
   },
   theme: {
+    keyframes: {
+      spin: {
+        from: {transform: 'rotate(0deg)'},
+        to: {transform: 'rotate(360deg)'},
+      },
+    },
     tokens: {
       colors: {
         'text-primary': {value: '#001141'},

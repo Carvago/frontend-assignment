@@ -1,6 +1,6 @@
 'use client';
 
-import {Box, Separator, Spinner, Text} from '@chakra-ui/react';
+import {Box, Separator, Text} from '@chakra-ui/react';
 import {useRouter} from 'next/navigation';
 
 import {Button} from '@/components/ui/Button';
@@ -11,6 +11,7 @@ import {useTodos} from '@/hooks/useTodos';
 import {useUser} from '@/context/UserContext';
 import {useCurrentDate} from '@/hooks/useCurrentDate';
 import {useTranslation} from 'react-i18next';
+import {Spinner} from '@/components/ui/Spinner';
 import IconAdd from '@icons/icon-add.svg';
 
 export function TodosPage() {
@@ -56,7 +57,7 @@ export function TodosPage() {
 
         {isLoading && (
           <Box py="10" display="flex" justifyContent="center">
-            <Spinner size="lg" color="fill-brand" />
+            <Spinner size={80} />
           </Box>
         )}
 
