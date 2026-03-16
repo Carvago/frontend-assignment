@@ -25,7 +25,7 @@ export function Checkbox({checked = false, onChange, disabled, label}: CheckboxP
       pointerEvents={disabled ? 'none' : 'auto'}
       {...(checked ? checkboxChecked : checkboxUnchecked)}
     >
-      {checked && <IconCheck width={16} height={16} style={{filter: 'brightness(0) invert(1)'}} />}
+      {checked && <IconCheck width={16} height={16} color="white" />}
     </Box>
   );
 }
