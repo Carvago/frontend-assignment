@@ -1,6 +1,7 @@
 import {Box} from '@chakra-ui/react';
 import {ReactNode} from 'react';
 import {cookies} from 'next/headers';
+import {redirect} from 'next/navigation';
 
 import {UserProvider} from '@/context/UserContext';
 import type {CurrentUser} from '@/types';
@@ -23,6 +24,7 @@ async function getUser(): Promise<CurrentUser | null> {
 
 export default async function AppLayout({children}: {children: ReactNode}) {
   const user = await getUser();
+  if (!user) redirect('/login');
 
   return (
     <UserProvider initialUser={user}>
