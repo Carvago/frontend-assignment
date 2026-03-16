@@ -32,10 +32,12 @@ vscode
 .vscode
 .vscode/*
 
+# Claude Code
+.claude/
+
 # misc
 /.sass-cache
 /connect.lock
-/coverage
 /libpeerconnection.log
 npm-debug.log
 yarn-error.log
