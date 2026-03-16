@@ -27,7 +27,7 @@ todoRoutes.get('/api/todo/:id', authenticateToken, (req: Request, res: Response)
 
   todoDB.findOne({id: todoId, userId: data.userId}, (error: Error | null, todo: Todo) =>
     match(isNil(error))
-      .with(true, () => res.status(200).json(todo))
+      .with(true, () => isNil(todo) ? res.status(404).json({error: 'Todo not found'}) : res.status(200).json(todo))
       .otherwise(() => res.status(500).json({error: 'Internal Server Error'}))
   );
 });
