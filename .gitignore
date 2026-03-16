@@ -35,6 +35,9 @@ vscode
 # Claude Code
 .claude/
 
+# Database
+backend/database/data/*.db
+
 # Environment
 .env.local
 .env*.local
