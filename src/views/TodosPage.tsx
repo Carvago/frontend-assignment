@@ -39,7 +39,7 @@ export function TodosPage() {
         >
           <Box>
             <Text fontSize="heading.2" fontWeight="heading.1" color="text-primary">
-              {t('todos.hello', {name: user?.username ?? ''})}
+              {t('todos.hello', {name: user?.fullName ?? user?.username ?? ''})}
             </Text>
             <Text fontSize="text.small" color="text-secondary" mt="1">
               {formattedDate}

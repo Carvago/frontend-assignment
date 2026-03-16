@@ -26,7 +26,7 @@ export default async function AppLayout({children}: {children: ReactNode}) {
 
   return (
     <UserProvider initialUser={user}>
-      <Box minH="100vh" bg="fill-gray" p="4">
+      <Box as="main" minH="100vh" bg="fill-gray" p="4">
         <Box maxW="1100px" mx="auto">
           {children}
         </Box>

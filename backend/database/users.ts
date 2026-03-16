@@ -1,6 +1,6 @@
 import Datastore from 'nedb';
 
-export type User = {username: string; password: string; createdAt: string; id: string};
+export type User = {username: string; fullName: string; password: string; createdAt: string; id: string};
 
 export const userDB = new Datastore<User>({
   filename: 'backend/database/data/users.db',

@@ -16,12 +16,13 @@ import {useTranslation} from 'react-i18next';
 import {useForm} from '@/hooks/useForm';
 
 type FormFields = {
+  fullName: string;
   username: string;
   password: string;
   confirmPassword: string;
 };
 
-const initialFields: FormFields = {username: '', password: '', confirmPassword: ''};
+const initialFields: FormFields = {fullName: '', username: '', password: '', confirmPassword: ''};
 
 export function RegisterPage() {
   const router = useRouter();
@@ -40,7 +41,7 @@ export function RegisterPage() {
 
     setIsLoading(true);
     try {
-      await register({username: fields.username, password: fields.password});
+      await register({username: fields.username, password: fields.password, fullName: fields.fullName});
       router.push('/todos');
     } catch {
       reset();
@@ -80,6 +81,14 @@ export function RegisterPage() {
 
             <form onSubmit={handleSubmit}>
               <VStack gap="4" align="stretch">
+                <Input
+                  label={t('register.fullName')}
+                  required
+                  name="fullName"
+                  value={fields.fullName}
+                  error={errors.fullName}
+                  onChange={setField('fullName')}
+                />
                 <Input
                   label={t('register.username')}
                   required

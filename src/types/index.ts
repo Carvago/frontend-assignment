@@ -10,5 +10,6 @@ export type Todo = {
 export type CurrentUser = {
   id: string;
   username: string;
+  fullName?: string;
   createdAt: string;
 };

@@ -21,6 +21,7 @@
 
   "register.title": "Create an account",
   "register.subtitle": "Join Zentask today! Fill in your details below to get started and take control of your tasks.",
+  "register.fullName": "Full name",
   "register.username": "Username",
   "register.password": "Password",
   "register.confirmPassword": "Confirm password",
@@ -58,6 +59,9 @@
   "todoItem.confirmTitle": "Delete task",
   "todoItem.confirmDescription": "Are you sure you want to delete this task? This action cannot be undone.",
 
+  "validation.required.fullName": "Full name is required",
+  "validation.min.fullName": "Full name must be at least 2 characters",
+  "validation.max.fullName": "Full name must be at most 50 characters",
   "validation.required.username": "Username is required",
   "validation.required.password": "Password is required",
   "validation.required.confirmPassword": "Please confirm your password",

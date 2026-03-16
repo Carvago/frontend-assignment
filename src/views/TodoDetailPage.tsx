@@ -82,7 +82,7 @@ export function TodoDetailPage({id}: TodoDetailPageProps) {
       <Header />
       <Box bg="fill-white" borderRadius="16px" p="6" boxShadow="0px 4px 24px rgba(0, 17, 65, 0.08)">
         <Box display="flex" alignItems="center" gap="3" mb="6">
-          <Button variant="subtle" onClick={() => router.back()}>
+          <Button variant="subtle" aria-label="Go back" onClick={() => router.back()}>
             <IconBackwards width={16} height={16} />
           </Button>
           <Text fontSize="heading.2" fontWeight="heading.1" color="text-primary">

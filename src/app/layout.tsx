@@ -6,6 +6,9 @@ import {ReactNode} from 'react';
 export const metadata: Metadata = {
   title: 'Carvago Frontend Assignment',
   description: 'Assignment in React.js for developers who want to join our team.',
+  icons: {
+    icon: '/logo.svg',
+  },
 };
 
 const SUPPORTED_LOCALES = ['en', 'cs'];

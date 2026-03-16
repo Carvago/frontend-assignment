@@ -21,6 +21,7 @@
   "register.title": "Vytvořit účet",
   "register.subtitle": "Připojte se k Zentask ještě dnes! Vyplňte níže své údaje a začněte mít přehled nad svými úkoly.",
   "register.fullName": "Celé jméno",
+  "register.fullName": "Celé jméno",
   "register.username": "Uživatelské jméno",
   "register.password": "Heslo",
   "register.confirmPassword": "Potvrdit heslo",
@@ -58,6 +59,9 @@
   "todoItem.confirmTitle": "Smazat úkol",
   "todoItem.confirmDescription": "Opravdu chcete smazat tento úkol? Tuto akci nelze vrátit zpět.",
 
+  "validation.required.fullName": "Celé jméno je povinné",
+  "validation.min.fullName": "Celé jméno musí mít alespoň 2 znaky",
+  "validation.max.fullName": "Celé jméno nesmí být delší než 50 znaků",
   "validation.required.username": "Uživatelské jméno je povinné",
   "validation.required.password": "Heslo je povinné",
   "validation.required.confirmPassword": "Prosím potvrďte heslo",

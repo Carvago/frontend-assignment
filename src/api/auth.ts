@@ -10,6 +10,7 @@ interface AuthResponse {
 interface Credentials {
   username: string;
   password: string;
+  fullName?: string;
 }
 
 function saveTokens(data: AuthResponse): void {

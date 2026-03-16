@@ -45,7 +45,7 @@ export function Header() {
               cursor="pointer"
             >
               <Avatar.Root size="sm" colorPalette="blue">
-                <Avatar.Fallback name={user.username} />
+                <Avatar.Fallback name={user.fullName ?? user.username} />
               </Avatar.Root>
               <Text
                 display={{base: 'none', md: 'block'}}
@@ -53,7 +53,7 @@ export function Header() {
                 fontWeight="text.alternative"
                 color="text-primary"
               >
-                {user.username}
+                {user.fullName ?? user.username}
               </Text>
             </Box>
           </Menu.Trigger>

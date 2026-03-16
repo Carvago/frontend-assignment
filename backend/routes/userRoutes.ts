@@ -15,7 +15,7 @@ import {getAccessTokenDataFromRequest} from '../utils/getAccessTokenDataFromRequ
 const userRoutes = express.Router();
 
 userRoutes.post('/api/register', (req: Request, res: Response) => {
-  const {password, username} = validateCredentialsFromBody(req, res);
+  const {password, username, fullName} = validateCredentialsFromBody(req, res);
   const hashedPassword = hashPassword(password);
 
   userDB.findOne({username}, (err: Error | null, user: User) => {
@@ -26,6 +26,7 @@ userRoutes.post('/api/register', (req: Request, res: Response) => {
       id: randomUUID(),
       createdAt: new Date().toISOString(),
       username,
+      fullName,
       password: hashedPassword,
     };
 
@@ -83,6 +84,7 @@ userRoutes.get('/api/user/me', authenticateToken, (req: Request, res: Response) 
     res.status(200).json({
       createdAt: user.createdAt,
       username: user.username,
+      fullName: user.fullName,
       id: user.id,
     });
   });

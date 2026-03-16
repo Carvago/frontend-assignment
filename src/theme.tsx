@@ -26,8 +26,8 @@ const fontWeights = {
 
 const theme = createSystem(defaultConfig, {
   globalCss: {
-    "*": {
-      focusRingColor: "#0F62FE !important",
+    '*': {
+      focusRingColor: '#0F62FE !important',
     },
   },
   theme: {
@@ -126,14 +126,15 @@ const theme = createSystem(defaultConfig, {
           px: '12px',
           h: '44px',
           _placeholder: {color: 'text-tertiary'},
-          focusRing: 'mixed' ,
+          focusRing: 'mixed',
           focusRingColor: 'border-gray',
           '&:hover:not(:focus-visible)': {
             borderColor: 'border-brand',
           },
           _focusVisible: {
             outline: 'none',
-            boxShadow: '0 0 0 4px color-mix(in srgb, var(--chakra-colors-fill-brand) 20%, transparent)',
+            boxShadow:
+              '0 0 0 4px color-mix(in srgb, var(--chakra-colors-fill-brand) 20%, transparent)',
           },
           _invalid: {
             borderColor: 'border-danger',
@@ -168,7 +169,8 @@ const theme = createSystem(defaultConfig, {
           _focusVisible: {
             outline: 'none',
             borderColor: 'var(--chakra-colors-border-brand)',
-            boxShadow: '0 0 0 4px color-mix(in srgb, var(--chakra-colors-fill-brand) 20%, transparent)',
+            boxShadow:
+              '0 0 0 4px color-mix(in srgb, var(--chakra-colors-fill-brand) 20%, transparent)',
           },
           _invalid: {
             borderColor: 'var(--chakra-colors-border-danger)',

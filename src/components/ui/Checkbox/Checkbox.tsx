@@ -5,7 +5,7 @@ import IconCheck from '@icons/icon-check.svg';
 import {checkboxChecked, checkboxUnchecked} from './Checkbox.styles';
 import {CheckboxProps} from './Checkbox.types';
 
-export function Checkbox({checked = false, onChange, disabled}: CheckboxProps) {
+export function Checkbox({checked = false, onChange, disabled, label}: CheckboxProps) {
   return (
     <Box
       as="span"
@@ -13,6 +13,7 @@ export function Checkbox({checked = false, onChange, disabled}: CheckboxProps) {
       tabIndex={disabled ? -1 : 0}
       aria-checked={checked}
       aria-disabled={disabled}
+      aria-label={label ?? 'Toggle complete'}
       onClick={() => !disabled && onChange?.()}
       onKeyDown={(e: KeyboardEvent) => {
         if (!disabled && e.key === 'Enter') {
