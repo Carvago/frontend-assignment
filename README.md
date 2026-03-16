@@ -53,3 +53,35 @@ You will create a simple to-do app, with a user register and login. You will wor
 - [Jest](https://jestjs.io/)
 
 **That's it! Good luck!**
+
+---
+
+## Implementation Notes
+
+### Tech decisions
+- Migrated from Create React App to **Next.js 16 App Router** with webpack
+- **Chakra UI v3** with a custom theme (colors, font sizes, recipes for Button, Input, Textarea)
+- **axios** for HTTP requests with JWT auth interceptors (access token + refresh token flow)
+- **i18next** for multi-language support (English / Czech), locale persisted in cookies
+- **yup** for form validation, custom `useForm` hook to avoid duplication
+- SVG icons imported as React components via SVGR
+
+### Features implemented
+- Authentication: login, register (with full name field), JWT + refresh token
+- Todo list with stateful fetching, loading states, error handling
+- Todo detail page, create and edit todo
+- Mark todo as complete / incomplete
+- Delete todo with confirmation dialog
+- Responsive design (mobile, tablet, desktop)
+- 404 page with translations
+- Keyboard navigation with styled focus outline
+
+### Extra improvements
+- Full name field added to registration
+- Date formatting respects current locale (month name in English/Czech)
+- Accessibility improvements: `aria-label` on icon buttons, checkbox ARIA label, `<main>` landmark
+- Redirect to `/todos` when navigating to a non-existent todo ID
+
+### Deployment
+- Frontend: [Vercel](https://frontend-assignment-hazel-chi.vercel.app)
+- Backend: Railway (Express + SQLite)
