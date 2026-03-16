@@ -9,19 +9,17 @@ export function Input({
   onChange,
   helperText,
   error,
-  placeholder,
-  name,
+  ...rest
 }: BaseInputProps) {
   return (
     <Box display="flex" flexDirection="column" gap="4px" width="100%">
       {label && <InputLabel label={label} required={required} hasError={!!error} />}
       <ChakraInput
-        name={name}
         type="text"
         value={value}
         onChange={onChange}
-        placeholder={placeholder}
         aria-invalid={!!error}
+        {...rest}
       />
       {(helperText || error) && (
         <Text fontSize="text.small" color={error ? 'text-danger' : 'text-tertiary'}>

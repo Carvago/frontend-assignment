@@ -1,12 +1,16 @@
+import {type InputProps as ChakraInputProps, type TextareaProps as ChakraTextareaProps} from '@chakra-ui/react';
 import {ChangeEvent} from 'react';
 
-export interface BaseInputProps {
+type SharedProps = {
   label?: string;
-  required?: boolean;
-  value?: string;
-  onChange?: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-  helperText?: string;
   error?: string;
-  placeholder?: string;
-  name?: string;
+  helperText?: string;
+};
+
+export interface BaseInputProps extends Omit<ChakraInputProps, 'onChange'>, SharedProps {
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface BaseTextareaProps extends Omit<ChakraTextareaProps, 'onChange'>, SharedProps {
+  onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }

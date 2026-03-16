@@ -32,7 +32,7 @@ export function TodoDetailPage({id}: TodoDetailPageProps) {
 
   useEffect(() => {
     getTodo(id)
-      .then(data => setTodo(data))
+      .then((data) => setTodo(data))
       .catch(() => router.replace('/todos'))
       .finally(() => setIsLoading(false));
   }, [id, router]);
@@ -43,7 +43,7 @@ export function TodoDetailPage({id}: TodoDetailPageProps) {
     try {
       const action = todo.completed ? incompleteTodo : completeTodo;
       await action(todo.id);
-      setTodo(prev => prev ? {...prev, completed: !prev.completed} : prev);
+      setTodo((prev) => (prev ? {...prev, completed: !prev.completed} : prev));
     } finally {
       setIsToggling(false);
     }
@@ -64,7 +64,12 @@ export function TodoDetailPage({id}: TodoDetailPageProps) {
     return (
       <>
         <Header />
-        <Box bg="fill-white" borderRadius="16px" p="6" boxShadow="0px 4px 24px rgba(0, 17, 65, 0.08)">
+        <Box
+          bg="fill-white"
+          borderRadius="16px"
+          p="6"
+          boxShadow="0px 4px 24px rgba(0, 17, 65, 0.08)"
+        >
           <Box py="10" display="flex" justifyContent="center">
             <Spinner size={80} />
           </Box>
@@ -82,7 +87,12 @@ export function TodoDetailPage({id}: TodoDetailPageProps) {
       <Header />
       <Box bg="fill-white" borderRadius="16px" p="6" boxShadow="0px 4px 24px rgba(0, 17, 65, 0.08)">
         <Box display="flex" alignItems="center" gap="3" mb="6">
-          <Button variant="subtle" aria-label="Go back" onClick={() => router.back()}>
+          <Button
+            variant="subtle"
+            aria-label="Go back"
+            alignSelf="baseline"
+            onClick={() => router.back()}
+          >
             <IconBackwards width={16} height={16} />
           </Button>
           <Text fontSize="heading.2" fontWeight="heading.1" color="text-primary">

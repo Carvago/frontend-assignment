@@ -6,10 +6,9 @@ export function Button({
   variant = 'solid',
   leftIcon,
   rightIcon,
-  onClick,
-  disabled,
   type = 'button',
   width,
+  ...rest
 }: ButtonProps) {
   const isIconOnly = !children && (leftIcon || rightIcon);
   const icon = leftIcon || rightIcon;
@@ -18,11 +17,10 @@ export function Button({
     <ChakraButton
       type={type}
       variant={variant}
-      onClick={onClick}
-      disabled={disabled}
       px={isIconOnly ? '0' : '4'}
       minW={isIconOnly ? '40px' : undefined}
       w={isIconOnly ? '40px' : width}
+      {...rest}
     >
       {isIconOnly ? icon : (
         <>

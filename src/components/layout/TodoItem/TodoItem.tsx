@@ -67,7 +67,7 @@ export function TodoItem({todo, onToggle, onDelete}: TodoItemProps) {
               {todo.title}
             </Text>
             {todo.description && (
-              <Text fontSize="text.small" color="text-secondary" mt="1">
+              <Text fontSize="text.small" color="text-secondary" mt="1" lineClamp={2}>
                 {todo.description}
               </Text>
             )}

@@ -1,6 +1,5 @@
 import {Box, Textarea as ChakraTextarea, Text} from '@chakra-ui/react';
-import {type ChangeEventHandler} from 'react';
-import {BaseInputProps} from './Input.types';
+import {BaseTextareaProps} from './Input.types';
 import {InputLabel} from './InputLabel';
 
 export function Textarea({
@@ -10,18 +9,16 @@ export function Textarea({
   onChange,
   helperText,
   error,
-  placeholder,
-  name,
-}: BaseInputProps) {
+  ...rest
+}: BaseTextareaProps) {
   return (
     <Box display="flex" flexDirection="column" gap="4px" width="100%">
       {label && <InputLabel label={label} required={required} hasError={!!error} />}
       <ChakraTextarea
-        name={name}
         value={value}
-        onChange={onChange as ChangeEventHandler<HTMLTextAreaElement>}
-        placeholder={placeholder}
+        onChange={onChange}
         aria-invalid={!!error}
+        {...rest}
       />
       {(helperText || error) && (
         <Text fontSize="text.small" color={error ? 'text-danger' : 'text-tertiary'}>
