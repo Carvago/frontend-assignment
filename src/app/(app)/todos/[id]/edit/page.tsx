@@ -1,4 +1,4 @@
-import {EditTodoPage} from '@/pages/EditTodoPage';
+import {EditTodoPage} from '@/views/EditTodoPage';
 
 type Props = {
   params: Promise<{id: string}>;

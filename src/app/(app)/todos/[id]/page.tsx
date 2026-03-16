@@ -1,4 +1,4 @@
-import {TodoDetailPage} from '@/pages/TodoDetailPage';
+import {TodoDetailPage} from '@/views/TodoDetailPage';
 
 type Props = {
   params: Promise<{id: string}>;

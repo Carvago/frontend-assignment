@@ -1,4 +1,4 @@
-import {TodosPage} from '@/pages/TodosPage';
+import {TodosPage} from '@/views/TodosPage';
 
 export default function Page() {
   return <TodosPage />;

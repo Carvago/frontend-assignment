@@ -1,4 +1,4 @@
-import {NewTodoPage} from '@/pages/NewTodoPage';
+import {NewTodoPage} from '@/views/NewTodoPage';
 
 export default function Page() {
   return <NewTodoPage />;
