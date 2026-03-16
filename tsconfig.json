@@ -33,7 +33,7 @@
         "src/assets/*"
       ],
       "@pages/*": [
-        "src/pages/*"
+        "src/views/*"
       ],
       "@icons/*": [
         "src/assets/icons/*"
@@ -41,7 +41,6 @@
     }
   },
   "include": [
-    "backend/**/*",
     "./src/**/*",
     "next-env.d.ts",
     ".next/types/**/*.ts",
