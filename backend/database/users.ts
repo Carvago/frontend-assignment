@@ -1,4 +1,4 @@
-import Datastore from 'nedb';
+import Datastore from '@seald-io/nedb';
 
 export type User = {username: string; password: string; createdAt: string; id: string};
 
